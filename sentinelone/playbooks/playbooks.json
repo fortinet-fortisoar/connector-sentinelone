@@ -1,0 +1,3724 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "Sample - SentinelOne - 3.1.1",
+      "description": "Sample playbooks for \"SentinelOne\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
+      "visible": true,
+      "image": null,
+      "uuid": "741953be-9ae9-42a5-bb90-ea6557f81cec",
+      "id": 125,
+      "deletedAt": null,
+      "importedBy": [],
+      "recordTags": [],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Export Threat",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Export threat with its events as csv/json/raw.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/980cf0f5-004f-475d-a736-5b9cac8d5c17",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "fa8adaf6-4e2c-48c6-a5ed-1aa21df6f36a",
+                "title": "SentinelOne: Export Threat",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "980cf0f5-004f-475d-a736-5b9cac8d5c17"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Export Threat",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "threat_id": "737238640203555438",
+                  "export_format": "RAW"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "export_forensics_threat",
+                "operationTitle": "Export Threat",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "d5163438-9932-47ac-8a18-cb912a16db28"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Export Threat",
+              "targetStep": "/api/3/workflow_steps/d5163438-9932-47ac-8a18-cb912a16db28",
+              "sourceStep": "/api/3/workflow_steps/980cf0f5-004f-475d-a736-5b9cac8d5c17",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "9e829f87-eb8f-4318-beb4-d0a01727a433"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "0261f756-37a4-46c7-b5a8-fb8b2a3b52d9",
+          "id": 1899,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Export Applications Risk",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Export installed applications and CVE list.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/88bef285-08c4-480a-970c-15c415d70e45",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "fc0f977f-1f66-4c35-9615-8a8153e1da1e",
+                "title": "SentinelOne: Export Applications Risk",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "88bef285-08c4-480a-970c-15c415d70e45"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Export Applications Risk",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "774341800335007828",
+                  "types": "",
+                  "osTypes": "Windows",
+                  "siteIds": "650323365789631737",
+                  "groupIds": "650323365806408954",
+                  "accountIds": "571644020260225832",
+                  "riskLevels": "",
+                  "size__between": "\"1024-104856\"",
+                  "extra_parameters": "",
+                  "agentMachineTypes": "Laptop",
+                  "agentIsDecommissioned": ""
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "export_applications_risk",
+                "operationTitle": "Export Applications Risk",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "916def57-ff08-4ac9-b129-e507c2d098af"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Export Applications Risk",
+              "targetStep": "/api/3/workflow_steps/916def57-ff08-4ac9-b129-e507c2d098af",
+              "sourceStep": "/api/3/workflow_steps/88bef285-08c4-480a-970c-15c415d70e45",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "ef9bcf5f-97e5-4c3c-af9d-a19bc4f222c5"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "040c7982-aca1-4c74-b915-8e4a6a3dc88b",
+          "id": 1889,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Hash Details",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Retrieve the details for a specified hash.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/5ef15ecd-014d-4f7c-85fb-721359761443",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "1085ae9c-7ec6-4dac-979f-27dce6729403",
+                "title": "SentinelOne: Get Hash Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "5ef15ecd-014d-4f7c-85fb-721359761443"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Hash Details",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "hash_id": "e104e267ad1f0e5024369032720ee028d84fda8c"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_hash_details",
+                "operationTitle": "Get Hash Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "bfe29cbf-3862-4ba0-a27d-80ced2560307"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Hash Details",
+              "targetStep": "/api/3/workflow_steps/bfe29cbf-3862-4ba0-a27d-80ced2560307",
+              "sourceStep": "/api/3/workflow_steps/5ef15ecd-014d-4f7c-85fb-721359761443",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "ba45e314-2561-4a80-b93b-c508dbd3d465"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "1398534b-3837-472c-ab54-7c529c109d30",
+          "id": 1908,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Application Count",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Get number of applications by risk level or filters.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/f2ea6e11-2e50-4c30-8ee9-ece6a8ffed02",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Application Count",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "774341800335007828",
+                  "types": "",
+                  "osTypes": "",
+                  "siteIds": "650323365789631737",
+                  "filterBy": "Filters",
+                  "groupIds": "650323365806408954",
+                  "accountIds": "571644020260225832",
+                  "riskLevels": "",
+                  "extra_parameters": "",
+                  "agentMachineTypes": "",
+                  "agentIsDecommissioned": ""
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_application_count",
+                "operationTitle": "Get Application Count",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "160",
+              "left": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "54ffb95b-20c1-4a11-a8e4-265ef2a21336"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "bfbcf5bb-b9b0-45e4-b597-a1e41c63d38e",
+                "title": "SentinelOne: Get Application Count",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "f2ea6e11-2e50-4c30-8ee9-ece6a8ffed02"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Application Count",
+              "targetStep": "/api/3/workflow_steps/54ffb95b-20c1-4a11-a8e4-265ef2a21336",
+              "sourceStep": "/api/3/workflow_steps/f2ea6e11-2e50-4c30-8ee9-ece6a8ffed02",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "3bc176f4-51d0-4253-bab7-ab5a0765378d"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "17241045-e7d5-4469-8ed6-fe2b30dd25da",
+          "id": 1898,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Query Status",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Get deep visibility query status, when state is FINISHED.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/f5bf5d01-3eca-4cf2-bc57-a92de9786caa",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "42158f26-570e-45a0-beac-f2b958427435",
+                "title": "SentinelOne: Get Query Status",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "f5bf5d01-3eca-4cf2-bc57-a92de9786caa"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Query Status",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "queryId": "q675541711278284c27a1a3469803b836"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_query_status",
+                "operationTitle": "Get Query Status",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "fe2221f3-d22d-4a2f-9c4e-9d9284bfcc7f"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Query Status",
+              "targetStep": "/api/3/workflow_steps/fe2221f3-d22d-4a2f-9c4e-9d9284bfcc7f",
+              "sourceStep": "/api/3/workflow_steps/f5bf5d01-3eca-4cf2-bc57-a92de9786caa",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "6d9652da-fbfe-4bdb-a415-86d37ccb95b6"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "175921d6-7323-45c3-858e-8f1770b40aec",
+          "id": 1904,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Fetch Agents Logs",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Fetches logs from agents system to the SentinelOne cloud.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/bca27cfd-aa4f-4e90-80db-97adce538ada",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Fetch Agents Logs",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "733791782298582406",
+                  "osTypes": "",
+                  "infected": "",
+                  "isActive": true,
+                  "agentVersions": "3.1.3.38",
+                  "coreCount__gte": 5,
+                  "coreCount__lte": 5,
+                  "networkStatuses": "",
+                  "isDecommissioned": "",
+                  "totalMemory__gte": 5,
+                  "totalMemory__lte": 5,
+                  "computerName__like": "DESKTOP-KVVF3BB"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "fetch_agent_logs",
+                "operationTitle": "Fetch Agents Logs",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "1a4238a8-4e84-443f-81ac-3d9693212063"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "621d8dc6-64b3-48ae-bbdc-ab1515b857b0",
+                "title": "SentinelOne: Fetch Agents Logs",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "bca27cfd-aa4f-4e90-80db-97adce538ada"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Fetch Agents Logs",
+              "targetStep": "/api/3/workflow_steps/1a4238a8-4e84-443f-81ac-3d9693212063",
+              "sourceStep": "/api/3/workflow_steps/bca27cfd-aa4f-4e90-80db-97adce538ada",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "940f873f-0113-43dd-8440-12a0baced420"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "1b5a4009-e8e2-46c5-ae07-561bcc4ebcb8",
+          "id": 1888,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Agent Count",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Retrieves the count of agents on a specified time, filtered by several parameters that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/2330e7aa-de12-4cbd-85d4-69357436acb2",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "3f516618-69b6-4d9f-b30d-6d1e66d6eeb2",
+                "title": "SentinelOne: Get Agent Count",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "2330e7aa-de12-4cbd-85d4-69357436acb2"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Agent Count",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "733791782298582406",
+                  "osTypes": "",
+                  "infected": "",
+                  "isActive": true,
+                  "agentVersions": "3.1.3.38",
+                  "coreCount__gte": 5,
+                  "coreCount__lte": 5,
+                  "networkStatuses": "",
+                  "isDecommissioned": "",
+                  "totalMemory__gte": 5,
+                  "totalMemory__lte": 5,
+                  "computerName__like": "DESKTOP-KVVF3BB"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_agent_count",
+                "operationTitle": "Get Agent Count",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "935d4665-c4d8-4ab5-a091-0060e6a3dd26"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Agent Count",
+              "targetStep": "/api/3/workflow_steps/935d4665-c4d8-4ab5-a091-0060e6a3dd26",
+              "sourceStep": "/api/3/workflow_steps/2330e7aa-de12-4cbd-85d4-69357436acb2",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "7c616ff8-f00e-48a6-9339-e8f76997f3e4"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "24316ad6-55bd-4d5e-8fd8-d8c0cc193078",
+          "id": 1920,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "List All Threats",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "List all threats identified by SentinelOne on agents. You can additionally filter out the results by specifying the agent ID or the threat name.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/ad388d80-e964-43d8-b846-bb2414464cf6",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "1fa7315d-597c-4786-962c-c9b0094190b3",
+                "title": "SentinelOne: List All Threats",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "ad388d80-e964-43d8-b846-bb2414464cf6"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "List All Threats",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "skip": "",
+                  "limit": "",
+                  "agentId": "",
+                  "contentHash": "",
+                  "displayName": "",
+                  "createdAt__gt": "",
+                  "createdAt__lte": ""
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "list_all_threats",
+                "operationTitle": "List All Threat",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "dba347ed-3c9d-4dc0-8fdb-b5cad4feca60"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> List All Threat",
+              "targetStep": "/api/3/workflow_steps/dba347ed-3c9d-4dc0-8fdb-b5cad4feca60",
+              "sourceStep": "/api/3/workflow_steps/ad388d80-e964-43d8-b846-bb2414464cf6",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "302ecfb2-b2cd-420b-bc9f-b707771c2637"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "27944cdf-6377-4468-99ca-0efa7f9bb22d",
+          "id": 1891,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Application CVEs",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Get known CVEs for a specific application, along with app and endpoint information. Available for complete SKU only.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/0cb29a79-9186-488f-b4a9-c06c79b7cd5f",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "a30903e1-23c7-452c-8762-cbe959b3de69",
+                "title": "SentinelOne: Get Application CVEs",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "0cb29a79-9186-488f-b4a9-c06c79b7cd5f"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Application CVEs",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "agent_application_id": "774341800335007828"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_application_cve",
+                "operationTitle": "Get Application CVEs",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "63b2d68e-5c72-47e8-8e4d-bbc12f078bbe"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Application CVEs",
+              "targetStep": "/api/3/workflow_steps/63b2d68e-5c72-47e8-8e4d-bbc12f078bbe",
+              "sourceStep": "/api/3/workflow_steps/0cb29a79-9186-488f-b4a9-c06c79b7cd5f",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "6485d400-5709-437c-b2d5-6bc5bdbd0b66"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "38cfa712-791c-450a-97df-75f46cfdb948",
+          "id": 1893,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Agents",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Retrieves a list of agents attached to an account.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/5b3e9c7a-fc85-4aca-85de-71b21ca8fb76",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "575a8a74-3f6d-48a7-8406-fe913a1bafab",
+                "title": "SentinelOne: Get Agents",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "5b3e9c7a-fc85-4aca-85de-71b21ca8fb76"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Agents",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "733791782298582406",
+                  "skip": 0,
+                  "limit": 10,
+                  "infected": "",
+                  "isActive": true,
+                  "agentVersions": "3.1.3.38",
+                  "coreCount__gte": 5,
+                  "coreCount__lte": 5,
+                  "networkStatuses": "",
+                  "isDecommissioned": "",
+                  "totalMemory__gte": 5,
+                  "totalMemory__lte": 5,
+                  "computerName__like": "DESKTOP-KVVF3BB"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_agents",
+                "operationTitle": "Get Agents",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "fbb9d229-4145-4f61-a4ec-b61a6bd0194e"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Agents",
+              "targetStep": "/api/3/workflow_steps/fbb9d229-4145-4f61-a4ec-b61a6bd0194e",
+              "sourceStep": "/api/3/workflow_steps/5b3e9c7a-fc85-4aca-85de-71b21ca8fb76",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "087f8fbe-2036-4e05-bcc9-9a25dee2e54f"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "473d66c9-d9d6-41cd-b12a-353c327443e8",
+          "id": 1906,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Threat Forensics",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Get forensics data for the threat.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/2192761c-1200-42b6-b961-4316bd7b877f",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "64a321db-8d16-4ee3-915b-52b0f9d62f2f",
+                "title": "SentinelOne: Get Threat Forensics",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "2192761c-1200-42b6-b961-4316bd7b877f"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Threat Forensics",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "siteIds": "650323365789631737",
+                  "groupIds": "650323365806408954",
+                  "threat_id": "737238636328018529",
+                  "accountIds": "571644020260225832"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "threat_forensics",
+                "operationTitle": "Get Threat Forensics",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "41a8ee82-a9be-467b-abae-99afee4628a3"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Threat Forensics",
+              "targetStep": "/api/3/workflow_steps/41a8ee82-a9be-467b-abae-99afee4628a3",
+              "sourceStep": "/api/3/workflow_steps/2192761c-1200-42b6-b961-4316bd7b877f",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "fe2f2d60-ed83-40b8-91e0-4f91ecc3b9df"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "49e4432d-1176-41ea-906d-1e0f9392d6ac",
+          "id": 1897,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Events",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Get all deep visibility events from query.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/df148a2e-54d4-491a-807e-753419846e22",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Events",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "skip": "",
+                  "limit": 10,
+                  "cursor": "",
+                  "sortBy": "",
+                  "queryId": "q675541711278284c27a1a3469803b836",
+                  "subQuery": "",
+                  "sortOrder": ""
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_events",
+                "operationTitle": "Get Events",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "d10f609d-8482-4230-8eb7-200add0bb6d5"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "06bb8b95-f852-48cb-899f-179a7c83b8ef",
+                "title": "SentinelOne: Get Events",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "df148a2e-54d4-491a-807e-753419846e22"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Events",
+              "targetStep": "/api/3/workflow_steps/d10f609d-8482-4230-8eb7-200add0bb6d5",
+              "sourceStep": "/api/3/workflow_steps/df148a2e-54d4-491a-807e-753419846e22",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "5ec646f0-8420-4867-b1d4-6ace691f851d"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "4b097a77-4be3-4cef-8e97-205f5d651b1e",
+          "id": 1919,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Threat Seen on Network",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Get seen on network data for the threat.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/df8c0793-e4fa-4287-91b5-47bd1089ffb2",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Threat Seen on Network",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "siteIds": "650323365789631737",
+                  "groupIds": "650323365806408954",
+                  "threat_id": "737238636328018529",
+                  "accountIds": "571644020260225832"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "threat_seen_on_network",
+                "operationTitle": "Get Threat Seen on Network",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "47b4bf75-d0f7-46e6-abec-988509848b66"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "07357e76-a95a-43aa-82da-0e9de220ce46",
+                "title": "SentinelOne: Get Threat Seen on Network",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "df8c0793-e4fa-4287-91b5-47bd1089ffb2"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Threat Seen on Network",
+              "targetStep": "/api/3/workflow_steps/47b4bf75-d0f7-46e6-abec-988509848b66",
+              "sourceStep": "/api/3/workflow_steps/df8c0793-e4fa-4287-91b5-47bd1089ffb2",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "fa97fe26-f46c-4b1a-a171-a0cda2f5c606"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "64840b6c-38c4-46b5-a9f9-512dc713307b",
+          "id": 1890,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "> SentinelOne > Fetch Threats",
+          "aliasName": null,
+          "tag": null,
+          "description": "Fetches all threats from SentinelOne based on the input parameters you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/d3ebf93f-bea3-465f-864a-57037e1c3c63",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Configuration",
+              "description": null,
+              "arguments": {
+                "Pull_Sample_Events_in_Past_X_Minutes": "10"
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+              "group": null,
+              "uuid": "330ce65b-9fcc-4990-8531-48698bc260bf"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Save Result",
+              "description": null,
+              "arguments": {
+                "data": "{{vars.steps.Fetch_Threats.data.get(\"data\", [])}}",
+                "macro_name": "{{vars.SentinelOneLastAlertPullTime}}",
+                "curr_timestamp": "{{vars.curr_timestamp}}"
+              },
+              "status": null,
+              "top": "705",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+              "group": null,
+              "uuid": "781604ab-8f87-4b7e-ad13-6503ab26ed2b"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Macro Value",
+              "description": null,
+              "arguments": {
+                "params": {
+                  "iri": "/api/wf/api/dynamic-variable/?format=json&name={{vars.SentinelOneLastAlertPullTime}}",
+                  "body": "",
+                  "method": "GET"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "300",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+              "group": null,
+              "uuid": "9d5f7bd3-9064-4bd8-8283-cc8a9f3eab1d"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Set Time Configuration",
+              "description": null,
+              "arguments": {
+                "curr_timestamp": "{{arrow.get( arrow.utcnow().timestamp).strftime('%Y-%m-%dT%H:%M:%S.%fZ')}}",
+                "last_pull_time": "{% if (vars.steps.Get_Macro_Value.data[\"hydra:member\"] | length) < 1%}{{arrow.utcnow().shift(minutes=-vars.Pull_Sample_Events_in_Past_X_Minutes).format('YYYY-MM-DDTHH:mm:ss.ssss')}}Z{% else %}{{vars.steps.Get_Macro_Value.data['hydra:member'][0]['value']}}{% endif %}"
+              },
+              "status": null,
+              "top": "435",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+              "group": null,
+              "uuid": "aff2797f-13ca-435e-ade0-ee5673bae231"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Fetch Threats",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "createdAt__gt": "{{vars.last_pull_time}}",
+                  "updatedAt__gt": "{{vars.last_pull_time}}"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "fetch_threats",
+                "operationTitle": "Fetch Threats",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "570",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "c9a96785-efc9-4311-970b-7a5f1b823743"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  },
+                  "_configuration_schema": "[\n{\n    \"title\": \"Pull Threats from Last X Minutes\",\n    \"name\": \"Pull_Sample_Events_in_Past_X_Minutes\",\n    \"type\": \"text\",\n    \"tooltip\": \"Fetch threats from last X minutes. e.g 5\",\n    \"required\": true,\n    \"editable\": true,\n    \"visible\": true,\n    \"value\": 10\n  }\n]",
+                  "SentinelOneLastAlertPullTime": "SentinelOneLastAlertPullTime_{{vars['audit_info']['cyops_playbook_iri'].split('/')[-1].replace('-','_')}}"
+                }
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+              "group": null,
+              "uuid": "d3ebf93f-bea3-465f-864a-57037e1c3c63"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Set Time Configuration -> Fetch Threats",
+              "targetStep": "/api/3/workflow_steps/c9a96785-efc9-4311-970b-7a5f1b823743",
+              "sourceStep": "/api/3/workflow_steps/aff2797f-13ca-435e-ade0-ee5673bae231",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "7690a999-67d7-4997-83e1-aa8fa2f2e149"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Get Macro Value -> Set Time Configuration",
+              "targetStep": "/api/3/workflow_steps/aff2797f-13ca-435e-ade0-ee5673bae231",
+              "sourceStep": "/api/3/workflow_steps/9d5f7bd3-9064-4bd8-8283-cc8a9f3eab1d",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "922771ae-39ac-4182-8462-ef4e32f50d55"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Configuration -> Get Macro Value",
+              "targetStep": "/api/3/workflow_steps/9d5f7bd3-9064-4bd8-8283-cc8a9f3eab1d",
+              "sourceStep": "/api/3/workflow_steps/330ce65b-9fcc-4990-8531-48698bc260bf",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "9f35663c-71a3-41f6-a7da-0fb9677fb7fb"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Configuration",
+              "targetStep": "/api/3/workflow_steps/330ce65b-9fcc-4990-8531-48698bc260bf",
+              "sourceStep": "/api/3/workflow_steps/d3ebf93f-bea3-465f-864a-57037e1c3c63",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "c442f6a4-3cc5-4073-ae4a-0e80015f8673"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Fetch Threats -> Save Result",
+              "targetStep": "/api/3/workflow_steps/781604ab-8f87-4b7e-ad13-6503ab26ed2b",
+              "sourceStep": "/api/3/workflow_steps/c9a96785-efc9-4311-970b-7a5f1b823743",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "d4c27d71-5ba8-4709-800c-a618567f76ba"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "670144de-2fed-4906-82b2-fcd988a4ef9b",
+          "id": 1907,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "dataingestion",
+            "fetch",
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Mitigate Threat",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Mitigates identified threats in the system.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/343498d4-c3b9-4941-9d49-5b3b59ff79d7",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "874bda2f-59d9-4f55-b4b0-2960cca4a153",
+                "title": "SentinelOne: Mitigate Threat",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "343498d4-c3b9-4941-9d49-5b3b59ff79d7"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Mitigate Threat",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "737238636328018529",
+                  "limit": 10,
+                  "action": "Kill",
+                  "agentId": "733791782298582406",
+                  "fromScan": "",
+                  "contentHash": "ad56917d0bbece0ab09d76d7e3d7cc8b6afb09a2",
+                  "displayName": "word_sample_20191011065710.doc"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "mitigate_threats",
+                "operationTitle": "Mitigate Threat",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "437d316d-0d75-4ef7-86f2-e9b972e8e377"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Mitigate Threat",
+              "targetStep": "/api/3/workflow_steps/437d316d-0d75-4ef7-86f2-e9b972e8e377",
+              "sourceStep": "/api/3/workflow_steps/343498d4-c3b9-4941-9d49-5b3b59ff79d7",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "087be5b7-3d91-447a-a572-b49f57146ac9"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "716e8cba-2b22-4fe7-99c3-c1d1567e301d",
+          "id": 1912,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Threat Details",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Retrieves details of a threat.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/b3692587-8d84-4d7c-bb75-0146aec2866d",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Threat Details",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "737238636328018529"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_threat_details",
+                "operationTitle": "Get Threat Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "34ed2a58-8810-4df1-9312-fae35d3124bd"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "a3b2a679-f5d3-41ef-89a1-4152780edc81",
+                "title": "SentinelOne: Get Threat Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "b3692587-8d84-4d7c-bb75-0146aec2866d"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Threat Details",
+              "targetStep": "/api/3/workflow_steps/34ed2a58-8810-4df1-9312-fae35d3124bd",
+              "sourceStep": "/api/3/workflow_steps/b3692587-8d84-4d7c-bb75-0146aec2866d",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "48a9f177-4b6a-40d3-8e4e-8ee30d6ab636"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "729ce66f-7f01-4166-8c24-162f49a168ed",
+          "id": 1913,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Agent Passphrase",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Retrieves an agent's passphrase to uninstall an offline agent.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/d1346a44-42d5-4591-b4de-bd8f04536f9c",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Agent Passphrase",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "733643234093413940"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_agent_passphrase",
+                "operationTitle": "Get Agent Passphrase",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "584a6f48-a920-4312-84b6-0e587da0d074"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "b1f39bca-3d2a-4649-ab01-c536343c9d65",
+                "title": "SentinelOne: Get Agent Passphrase",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "d1346a44-42d5-4591-b4de-bd8f04536f9c"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Agent Passphrase",
+              "targetStep": "/api/3/workflow_steps/584a6f48-a920-4312-84b6-0e587da0d074",
+              "sourceStep": "/api/3/workflow_steps/d1346a44-42d5-4591-b4de-bd8f04536f9c",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "02f81452-113d-4abf-8718-7e89344a402c"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "732b2c65-52c0-4875-b516-ae6a2290870e",
+          "id": 1902,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Reconnect Agent",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Reconnects a disconnected agent to the network.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/74c3cf7e-c014-4268-8156-9476bc7541c0",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "9d2de679-82d7-4e78-81df-ca807d6d0e46",
+                "title": "SentinelOne: Reconnect Agent",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "74c3cf7e-c014-4268-8156-9476bc7541c0"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Reconnect Agent",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "733791782298582406",
+                  "osTypes": "",
+                  "infected": "",
+                  "isActive": true,
+                  "agentVersions": "3.1.3.38",
+                  "coreCount__gte": 5,
+                  "coreCount__lte": 5,
+                  "networkStatuses": "",
+                  "isDecommissioned": "",
+                  "totalMemory__gte": 5,
+                  "totalMemory__lte": 5,
+                  "computerName__like": "DESKTOP-KVVF3BB"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "reconnect_agent",
+                "operationTitle": "Reconnect Agent",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "e6e38e35-f055-4f8b-a6d2-d4cd63a953f4"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Reconnect Agent",
+              "targetStep": "/api/3/workflow_steps/e6e38e35-f055-4f8b-a6d2-d4cd63a953f4",
+              "sourceStep": "/api/3/workflow_steps/74c3cf7e-c014-4268-8156-9476bc7541c0",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "a7fb95ed-c535-4cfa-9ec3-80b8f0ce5b3a"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "805f1053-84f0-4f22-a760-5b62206387d0",
+          "id": 1900,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Free Text Filters",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Returns a metadata list of the available free-text filters.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/e27ec347-f6f6-4dd0-ae1a-e0e03344eb29",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Free Text Filters",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": [],
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "free_text_filters",
+                "operationTitle": "Free Text Filters",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "6f4dc1fb-05cc-422c-99f0-3eda33fca8ec"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "74af6673-89b1-429f-ac30-649acfc00462",
+                "title": "SentinelOne: Free Text Filters",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "e27ec347-f6f6-4dd0-ae1a-e0e03344eb29"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Free Text Filters",
+              "targetStep": "/api/3/workflow_steps/6f4dc1fb-05cc-422c-99f0-3eda33fca8ec",
+              "sourceStep": "/api/3/workflow_steps/e27ec347-f6f6-4dd0-ae1a-e0e03344eb29",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "a8cd442c-0462-464c-9379-31aa8545bf24"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "8be389f6-1e97-4d4e-9b48-55961ab2b8d5",
+          "id": 1892,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Agent Application",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Retrieves a list of applications installed on an agent.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/d49926ba-4f97-4b17-b3f9-0d34bdc8877c",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Agent Application",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "733643234093413940"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_agent_application",
+                "operationTitle": "Get Agent Application",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "3b59c04b-1c59-46a6-a625-2e1e398d7924"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "6c4f3efe-e98e-42f7-b891-08b543000063",
+                "title": "SentinelOne: Get Agent Application",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "d49926ba-4f97-4b17-b3f9-0d34bdc8877c"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Agent Application",
+              "targetStep": "/api/3/workflow_steps/3b59c04b-1c59-46a6-a625-2e1e398d7924",
+              "sourceStep": "/api/3/workflow_steps/d49926ba-4f97-4b17-b3f9-0d34bdc8877c",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "eb8543cc-2e6f-437f-aa2e-45a676296762"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "8be6afcf-9857-4aef-b4e4-265a7e916e0a",
+          "id": 1886,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Fetch Threats",
+          "aliasName": null,
+          "tag": null,
+          "description": "List all threats identified by SentinelOne on agents.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/661e1133-5069-4b06-a787-6ec61ccc2bce",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "3f4cd04f-a1ae-435c-8539-1e9156319a66",
+                "title": "SentinelOne: Fetch Threats",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "661e1133-5069-4b06-a787-6ec61ccc2bce"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Fetch Threats",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": [],
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "fetch_threats",
+                "operationTitle": "Fetch Threats",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "dd852819-b578-4c25-93b5-36b65173c53b"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Fetch Threats",
+              "targetStep": "/api/3/workflow_steps/dd852819-b578-4c25-93b5-36b65173c53b",
+              "sourceStep": "/api/3/workflow_steps/661e1133-5069-4b06-a787-6ec61ccc2bce",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "44237c2f-77da-4f28-a457-0df5e43a0daf"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "8d0c72e2-c5be-45ad-a405-c29d59a7909d",
+          "id": 1903,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Agent Action",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Supports actions that can be performed on an agent.You must select Agent Action from the Action drop-down list and then select one of the following actions from the Action drop-down list in the Inputs section:Isolate Agent Network: Disconnects an agent from the network.Decommission Agent: Decommissions an agent.Uninstall Agent: Uninstalls agent software from the list of agents.Shutdown Agent: Shutdowns an agent's system.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/094d3d11-50ee-448e-85fb-ee7cff6bf50d",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "24788b63-52a3-43c7-8c74-f1c2598a9929",
+                "title": "SentinelOne: Agent Action",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "094d3d11-50ee-448e-85fb-ee7cff6bf50d"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Agent Action",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "733643234093413940",
+                  "action": "Isolate Agent Network",
+                  "groupIds": "650323365806408954",
+                  "isUninstalled": "",
+                  "isDecommissioned": ""
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "agent_action",
+                "operationTitle": "Agent Action",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "7bfb44ee-5f0d-40a3-9f5e-36226b9ab2b7"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Agent Action",
+              "targetStep": "/api/3/workflow_steps/7bfb44ee-5f0d-40a3-9f5e-36226b9ab2b7",
+              "sourceStep": "/api/3/workflow_steps/094d3d11-50ee-448e-85fb-ee7cff6bf50d",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "1f1212fb-85f5-4710-9fbb-e604faf48369"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "9d930aaa-8bbe-4d59-82d0-7bb212ee27e2",
+          "id": 1905,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Threat Forensic Details",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Get detailed forensics data for the threat.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/4fb20691-471c-45cf-b8e6-d52205f2b9ee",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Threat Forensic Details",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "threat_id": "737238636328018529"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "threat_forensic_details",
+                "operationTitle": "Threat Forensic Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "10e5c7fa-4d4b-44ef-b2f1-abccb2e0417a"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "93e9ff05-dc7b-4c05-8ed2-c507d3661c6b",
+                "title": "SentinelOne: Threat Forensic Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "4fb20691-471c-45cf-b8e6-d52205f2b9ee"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Threat Forensic Details",
+              "targetStep": "/api/3/workflow_steps/10e5c7fa-4d4b-44ef-b2f1-abccb2e0417a",
+              "sourceStep": "/api/3/workflow_steps/4fb20691-471c-45cf-b8e6-d52205f2b9ee",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "dc6ad802-e568-4b1b-822c-a118731d8ab9"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "9dcd7c65-4ed6-4e13-acbd-2cc0c2ba60b2",
+          "id": 1915,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Applications",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "List installed applications per endpoint, including risk level. Available for complete SKU only.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/e263e85f-90ac-4914-8f40-c92c42792299",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Applications",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "774341800335007828",
+                  "limit": 10,
+                  "types": "",
+                  "sortBy": "",
+                  "osTypes": "",
+                  "countOnly": "",
+                  "skipCount": "",
+                  "sortOrder": "",
+                  "riskLevels": "",
+                  "extra_parameters": "",
+                  "agentMachineTypes": "",
+                  "agentIsDecommissioned": ""
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_applications",
+                "operationTitle": "Get Applications",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "8eefed6e-0181-452e-9a7d-fdad00314103"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "d31817dc-ba9d-4498-a6de-5877ca0da50a",
+                "title": "SentinelOne: Get Applications",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "e263e85f-90ac-4914-8f40-c92c42792299"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Applications",
+              "targetStep": "/api/3/workflow_steps/8eefed6e-0181-452e-9a7d-fdad00314103",
+              "sourceStep": "/api/3/workflow_steps/e263e85f-90ac-4914-8f40-c92c42792299",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "2218486c-1188-416e-95f8-5b49015557a6"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "a580c13f-ad03-448d-b72b-7b6948fcc3c0",
+          "id": 1909,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "SentinelOne > Ingest",
+          "aliasName": null,
+          "tag": null,
+          "description": "This playbook demonstrate the list threats operation.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/2a433386-57db-4c50-ad7f-74401ce7309e",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "bb218803-628f-4c2c-81fb-b2ae132c658b",
+                "title": "SentinelOne > Ingest",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "2a433386-57db-4c50-ad7f-74401ce7309e"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Update Last Alert Pull Time",
+              "description": null,
+              "arguments": {
+                "params": {
+                  "macro": "{{vars.steps.List_Threats.macro_name}}",
+                  "value": "{{vars.steps.List_Threats.curr_timestamp}}"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "updatemacro",
+                "operationTitle": "FSR: Create/Update Global Variables",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "570",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+              "group": null,
+              "uuid": "760d6d9e-13aa-411c-a299-9d33bc13d9f1"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "List Threats",
+              "description": null,
+              "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "/api/3/workflows/670144de-2fed-4906-82b2-fcd988a4ef9b"
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+              "group": null,
+              "uuid": "961972f6-0a88-40ea-a47b-488efc1abd1a"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Configuration",
+              "description": null,
+              "arguments": {
+                "fetched_threats": "{{vars.steps.List_Threats}}",
+                "threats_status_map": "{'in_progress': {{'AlertStatus' | picklist('Investigating') }}, 'resolved': {{'AlertStatus' | picklist('Closed') }}, 'unresolved': {{'AlertStatus'| picklist('Pending') }}}",
+                "threats_severity_map": "{'malicious': {{'Severity' | picklist('Critical') }}, 'n/a': {{'Severity' | picklist('Low') }}, 'suspicious': {{'Severity'| picklist('High') }}}"
+              },
+              "status": null,
+              "top": "300",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+              "group": null,
+              "uuid": "ddf2ea99-d32b-4418-8a65-eb244aca5d19"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Create Record",
+              "description": null,
+              "arguments": {
+                "for_each": {
+                  "item": "{{vars.steps.List_Threats.data}}",
+                  "__bulk": true,
+                  "parallel": false,
+                  "condition": "",
+                  "batch_size": 100
+                },
+                "resource": {
+                  "name": "{%if vars.item.threatInfo.threatName%}{{vars.item.threatInfo.threatName}} {%else%}{{vars.item.threatName}}{%endif%}",
+                  "type": "/api/3/picklists/574a6ee2-7265-4701-815e-cff83b053bce",
+                  "state": "/api/3/picklists/a1bac09b-1441-45aa-ad1b-c88744e48e72",
+                  "source": "SentinelOne",
+                  "status": "{{vars.item.threatInfo.incidentStatus | resolveRange(vars.threats_status_map)}}",
+                  "fileHash": "{%if vars.item.threatInfo.sha1%}{{vars.item.threatInfo.sha1}} {%else%}{{vars.item.fileContentHash}}{%endif%}",
+                  "filePath": "{%if vars.item.threatInfo.filePath%}{{vars.item.threatInfo.filePath}} {%else%}{{vars.item.filePath}}{%endif%}",
+                  "severity": "{{vars.item.threatInfo.confidenceLevel | resolveRange(vars.threats_severity_map)}}",
+                  "sourceId": "{{vars.item.id}}",
+                  "__replace": "true",
+                  "sourcedata": "{{vars.item | toJSON}}",
+                  "description": "{%if vars.item.agentDetectionInfo.accountName%}{{vars.item.agentDetectionInfo.accountName}}\n{%else%}{{vars.item.accountName}}{%endif%}",
+                  "ackSlaStatus": "/api/3/picklists/72979f64-e8b9-4888-a965-957e0ec24818",
+                  "respSlaStatus": "/api/3/picklists/72979f64-e8b9-4888-a965-957e0ec24818",
+                  "priorityWeight": 1,
+                  "escalatedtoincident": "/api/3/picklists/2128a09c-153d-4db3-985d-de6be33deae5",
+                  "alertRemainingAckSLA": 0
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "/api/3/upsert/alerts",
+                "__recommend": [],
+                "fieldOperation": {
+                  "recordTags": "Overwrite"
+                },
+                "step_variables": []
+              },
+              "status": null,
+              "top": "435",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/2597053c-e718-44b4-8394-4d40fe26d357",
+              "group": null,
+              "uuid": "fb5efbea-5fbf-495f-b73b-8d6e97a6267d"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "List Threats -> configuration",
+              "targetStep": "/api/3/workflow_steps/ddf2ea99-d32b-4418-8a65-eb244aca5d19",
+              "sourceStep": "/api/3/workflow_steps/961972f6-0a88-40ea-a47b-488efc1abd1a",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "3720f611-1618-4f28-b743-8fc51c122ce3"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Create Record -> Update Last Alert Pull Time",
+              "targetStep": "/api/3/workflow_steps/760d6d9e-13aa-411c-a299-9d33bc13d9f1",
+              "sourceStep": "/api/3/workflow_steps/fb5efbea-5fbf-495f-b73b-8d6e97a6267d",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "7aba638f-3b29-4501-ac71-95381612c732"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "configuration -> Create Record",
+              "targetStep": "/api/3/workflow_steps/fb5efbea-5fbf-495f-b73b-8d6e97a6267d",
+              "sourceStep": "/api/3/workflow_steps/ddf2ea99-d32b-4418-8a65-eb244aca5d19",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "d5b1d328-79ac-4ee4-992c-f9a1ac2ae113"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> List Threats",
+              "targetStep": "/api/3/workflow_steps/961972f6-0a88-40ea-a47b-488efc1abd1a",
+              "sourceStep": "/api/3/workflow_steps/2a433386-57db-4c50-ad7f-74401ce7309e",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "edccd199-0c7a-4e87-8407-3abc3758e120"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "aaab1074-cad4-49a8-83a8-e69ebb540968",
+          "id": 1916,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "dataingestion",
+            "create",
+            "ingest",
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get CVEs",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Get known CVEs for applications. Available for complete SKU only.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/83f9e341-c888-414c-8310-fe2f9bc6782e",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get CVEs",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "774341800335007828",
+                  "limit": 10,
+                  "cveIds": "CVE-2018-3182",
+                  "sortBy": "",
+                  "countOnly": "",
+                  "skipCount": "",
+                  "sortOrder": "",
+                  "extra_parameters": ""
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_cve",
+                "operationTitle": "Get CVEs",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "0fc40bb1-d4b7-4d54-8654-a1e6c1a484d3"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "3a83db9c-bda3-4f6c-b4b9-f94a484a9e02",
+                "title": "SentinelOne: Get CVEs",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "83f9e341-c888-414c-8310-fe2f9bc6782e"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get CVEs",
+              "targetStep": "/api/3/workflow_steps/0fc40bb1-d4b7-4d54-8654-a1e6c1a484d3",
+              "sourceStep": "/api/3/workflow_steps/83f9e341-c888-414c-8310-fe2f9bc6782e",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "ddff8ca6-003e-4ea4-bb41-78bc3fe3e3b8"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "ab4c2792-f9ae-418c-908f-3bb66b2e2d0f",
+          "id": 1887,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Events By Type",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Get deep visibility events from query by event type.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/5de2782a-0d20-47df-9399-307c2316afb1",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Events By Type",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "skip": "",
+                  "limit": 10,
+                  "cursor": "",
+                  "sortBy": "",
+                  "queryId": "q675541711278284c27a1a3469803b836",
+                  "subQuery": "",
+                  "sortOrder": "",
+                  "event_type": "Events"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_events_by_type",
+                "operationTitle": "Get Events By Type",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "3d7c44c6-7cdc-4c12-8cf3-3a527daaff7f"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "68a10e79-83f1-4d09-8706-a2339fb1b9ea",
+                "title": "SentinelOne: Get Events By Type",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "5de2782a-0d20-47df-9399-307c2316afb1"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Events By Type",
+              "targetStep": "/api/3/workflow_steps/3d7c44c6-7cdc-4c12-8cf3-3a527daaff7f",
+              "sourceStep": "/api/3/workflow_steps/5de2782a-0d20-47df-9399-307c2316afb1",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "25c538bf-90fd-4008-a9d4-12a310ff8823"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "b331b958-0605-470f-bfaf-ddf7165617f3",
+          "id": 1895,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Abort Agent Scan",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Aborts scanning on an agent system.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/a2712d09-54b7-45ca-8c3f-cd25acbcdab9",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "89d001d9-02a7-4de1-9d1e-4c3720d96e46",
+                "title": "SentinelOne: Abort Agent Scan",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "a2712d09-54b7-45ca-8c3f-cd25acbcdab9"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Abort Agent Scan",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "733791782298582406",
+                  "osTypes": "",
+                  "infected": "",
+                  "isActive": true,
+                  "agentVersions": "3.1.3.38",
+                  "coreCount__gte": 5,
+                  "coreCount__lte": 5,
+                  "networkStatuses": "",
+                  "isDecommissioned": "",
+                  "totalMemory__gte": 5,
+                  "totalMemory__lte": 5,
+                  "computerName__like": "DESKTOP-KVVF3BB"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "abort_agent_scan",
+                "operationTitle": "Abort Agent Scan",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "acb5a7a7-fa7b-451c-acab-650d562178ba"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Abort Agent Scan",
+              "targetStep": "/api/3/workflow_steps/acb5a7a7-fa7b-451c-acab-650d562178ba",
+              "sourceStep": "/api/3/workflow_steps/a2712d09-54b7-45ca-8c3f-cd25acbcdab9",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "dbf241d9-458e-4c41-899d-bd7d67557d88"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "b95f7d5c-3492-4965-9087-05b17b017969",
+          "id": 1896,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Broadcast Message To Agent",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Broadcast a message to a specified agent system or a list of agent systems.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/3793b9d0-fbc3-4357-a76d-4674a005a0f3",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "a0cda957-93fb-4c6e-830f-4998c05c0e96",
+                "title": "SentinelOne: Broadcast Message To Agent",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "3793b9d0-fbc3-4357-a76d-4674a005a0f3"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Broadcast Message To Agent",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "733791782298582406",
+                  "message": "Network issues expected in the next hour",
+                  "osTypes": "",
+                  "infected": "",
+                  "isActive": true,
+                  "agentVersions": "3.1.3.38",
+                  "coreCount__gte": "5",
+                  "coreCount__lte": "5",
+                  "networkStatuses": "",
+                  "isDecommissioned": "",
+                  "totalMemory__gte": "5",
+                  "totalMemory__lte": "5",
+                  "computerName__like": "DESKTOP-KVVF3BB"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "broadcast_message_to_agent",
+                "operationTitle": "Broadcast Message To Agent",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "e8c8cf7a-c4c1-490e-bfff-00b4a7d0baee"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Broadcast Message To Agent",
+              "targetStep": "/api/3/workflow_steps/e8c8cf7a-c4c1-490e-bfff-00b4a7d0baee",
+              "sourceStep": "/api/3/workflow_steps/3793b9d0-fbc3-4357-a76d-4674a005a0f3",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "c274cd3b-a992-4081-ab9a-09eca68ca33e"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "c0504b38-85b9-415b-ad74-13352d24b179",
+          "id": 1918,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Create Query And Get Query ID",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Start a deep visibility query and get the queryId.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/4226cf25-b5fa-48d2-9421-261d1b801cc2",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "eefc4da8-7f85-42aa-b58e-8b78fe624cad",
+                "title": "SentinelOne: Create Query And Get Query ID",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "4226cf25-b5fa-48d2-9421-261d1b801cc2"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Create Query And Get Query ID",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "query": "AgentName IS NOT EMPTY",
+                  "tenant": "",
+                  "toDate": "2019-12-16T18:30:00.000Z",
+                  "siteIds": "650323365789631737",
+                  "fromDate": "2019-12-02T18:30:00.000Z",
+                  "groupIds": "650323365806408954",
+                  "queryType": "events",
+                  "accountIds": "571644020260225832"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "create_query",
+                "operationTitle": "Create Query And Get Query ID",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "7ecc61ea-e735-4fb3-a60e-4d2a3cd0a787"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Create Query And Get Query ID",
+              "targetStep": "/api/3/workflow_steps/7ecc61ea-e735-4fb3-a60e-4d2a3cd0a787",
+              "sourceStep": "/api/3/workflow_steps/4226cf25-b5fa-48d2-9421-261d1b801cc2",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "b2cda474-735b-4d4a-8eef-64f925a201a1"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "c6f9577f-1eec-4f50-8df5-dba8a7825bac",
+          "id": 1917,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Agent Process",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Retrieves a list of processes running on an agent.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/f4ed3810-cb38-4e22-95b4-73794f74e47c",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Agent Process",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "733643234093413940"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_agent_process",
+                "operationTitle": "Get Agent Process",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "d7a02ba6-09b9-4418-89dd-f63a77dbe69e"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "d4a2a86f-a137-48c2-b9a8-d7f01022bd3a",
+                "title": "SentinelOne: Get Agent Process",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "f4ed3810-cb38-4e22-95b4-73794f74e47c"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Agent Process",
+              "targetStep": "/api/3/workflow_steps/d7a02ba6-09b9-4418-89dd-f63a77dbe69e",
+              "sourceStep": "/api/3/workflow_steps/f4ed3810-cb38-4e22-95b4-73794f74e47c",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "752ddf1e-2a41-4715-a124-ef1a70c4a437"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "cba1af0a-acf6-4afa-9c96-7fbe20de5e54",
+          "id": 1910,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Threat Events List",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "List all threat events identified by SentinelOne on agents. You can additionally filter out the results by specifying the threat ID or other input parameters you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/fbca3873-fe1f-4ad5-aaaf-281314a5544c",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Threat Events List",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "skip": 0,
+                  "limit": 10,
+                  "cursor": "",
+                  "eventId": "",
+                  "threat_id": "1292053694661763380",
+                  "eventTypes": [],
+                  "eventSubTypes": "",
+                  "additional_fields": ""
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "get_threat_events",
+                "operationTitle": "Get Threat Events List",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "9e1b02d3-48b6-422c-95ad-f35443ead459"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "d5fb5dcc-b0d7-4df7-943b-29f163752ab7",
+                "title": "SentinelOne: Get Threat Events List",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "fbca3873-fe1f-4ad5-aaaf-281314a5544c"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Threat Events List",
+              "targetStep": "/api/3/workflow_steps/9e1b02d3-48b6-422c-95ad-f35443ead459",
+              "sourceStep": "/api/3/workflow_steps/fbca3873-fe1f-4ad5-aaaf-281314a5544c",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "df05e2a9-c231-46ff-bba1-80c8f9e6174b"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "d2fbcfc4-3edb-4a6c-9d18-dcc7e0285ddb",
+          "id": 1911,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Initiate Agent Scan",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Initiates scanning on a specified agent system.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/8085a9d2-8ef0-4992-b5ef-9d9b2a0a2a1c",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Initiate Agent Scan",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "733791782298582406",
+                  "osTypes": "",
+                  "infected": "",
+                  "isActive": true,
+                  "agentVersions": "3.1.3.38",
+                  "coreCount__gte": 5,
+                  "coreCount__lte": 5,
+                  "networkStatuses": "",
+                  "isDecommissioned": "",
+                  "totalMemory__gte": 5,
+                  "totalMemory__lte": 5,
+                  "computerName__like": "DESKTOP-KVVF3BB"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "initiate_agent_scan",
+                "operationTitle": "Initiate Agent Scan",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "24f0d7b0-dfa6-4fff-a9ea-8d1bd7d9ae0f"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "405ceda7-ba63-4666-b84c-249d8745793f",
+                "title": "SentinelOne: Initiate Agent Scan",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "8085a9d2-8ef0-4992-b5ef-9d9b2a0a2a1c"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Initiate Agent Scan",
+              "targetStep": "/api/3/workflow_steps/24f0d7b0-dfa6-4fff-a9ea-8d1bd7d9ae0f",
+              "sourceStep": "/api/3/workflow_steps/8085a9d2-8ef0-4992-b5ef-9d9b2a0a2a1c",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "00cd7b53-851c-460c-8979-06fa4f4fae51"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "e40ea3a7-5909-4e3d-9f8f-82155efa5807",
+          "id": 1914,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Cancel Running Query",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Stop deep visibility query by queryId.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/8cbecff8-428e-410e-b59a-14ac9f381cf2",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Cancel Running Query",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "queryId": "q675541711278284c27a1a3469803b836"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "cancel_running_query",
+                "operationTitle": "Cancel Running Query",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "298c3eab-7175-4bb1-a832-2d4e4b5a56d9"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "07ad59da-7786-4613-a957-621d5ae365a3",
+                "title": "SentinelOne: Cancel Running Query",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "8cbecff8-428e-410e-b59a-14ac9f381cf2"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Cancel Running Query",
+              "targetStep": "/api/3/workflow_steps/298c3eab-7175-4bb1-a832-2d4e4b5a56d9",
+              "sourceStep": "/api/3/workflow_steps/8cbecff8-428e-410e-b59a-14ac9f381cf2",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "33579c0e-5adc-4bfa-824d-9a55f576d8d4"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "ef4d6b5b-cc34-405b-920a-cb69caeb87d7",
+          "id": 1894,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Mark Threat As Benign",
+          "aliasName": null,
+          "tag": "#SentinelOne",
+          "description": "Marks an identified threat as safe.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1669012620,
+          "collection": "/api/3/workflow_collections/741953be-9ae9-42a5-bb90-ea6557f81cec",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/2567b9b1-c62a-4d84-8ad3-41b027faa827",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "3754e78b-213b-443c-9a61-665aed1a1810",
+                "title": "SentinelOne: Mark Threat As Benign",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "2567b9b1-c62a-4d84-8ad3-41b027faa827"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Mark Threat As Benign",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "737238636328018529",
+                  "limit": 10,
+                  "agentId": "733791782298582406",
+                  "fromScan": "",
+                  "contentHash": "ad56917d0bbece0ab09d76d7e3d7cc8b6afb09a2",
+                  "displayName": "word_sample_20191011065710.doc",
+                  "targetScope": "group"
+                },
+                "version": "3.1.1",
+                "connector": "sentinelone",
+                "operation": "mark_threat_as_benign",
+                "operationTitle": "Mark Threat As Benign",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "78468c9b-aa54-483f-a3a1-0f7537664556"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Mark Threat As Benign",
+              "targetStep": "/api/3/workflow_steps/78468c9b-aa54-483f-a3a1-0f7537664556",
+              "sourceStep": "/api/3/workflow_steps/2567b9b1-c62a-4d84-8ad3-41b027faa827",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "68782c7e-a3ef-43bc-8e6c-d1e5c12a1d39"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "fa19527f-fdde-453b-a572-655637cdbcf1",
+          "id": 1901,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "sentinelone",
+    "dataingestion",
+    "fetch",
+    "create",
+    "ingest"
+  ]
+}
