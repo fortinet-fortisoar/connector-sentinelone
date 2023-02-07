@@ -11,7 +11,7 @@ from .utils import (_build_url, _get,
                     _get_headers, logout_user,
                     error_handling)
 from .constant import Threats_2_0, Threats_2_1, Threats_Details_2_0, Threats_Details_2_1, Agent_2_0, Agent_2_1, OS_Type, \
-    APP_Type_List, Sort_Type
+    APP_Type_List, Sort_Type, Incident_State_List
 from connectors.cyops_utilities.builtins import upload_file_to_cyops
 from django.conf import settings
 
@@ -99,6 +99,36 @@ def mark_threat_as_benign(config, params):
     error_handling("Failed to mark as benign. ", response.text)
 
 
+def change_incident_status(config, params):
+    headers = _get_headers(config)
+    threat_id = params.get('threatID')
+    endpoint = 'web/api/{0}/threats/incident'.format(config.get('api_version'))
+    
+    payload = {
+        "data": {"incidentStatus": Incident_State_List[params.get('incidentStatus')]},
+	    "filter": {"ids": [threat_id]}
+	}
+    url, verify_ssl = _build_url(config, method_name=endpoint)
+    response = _post(headers, url, body=payload, verify=verify_ssl)
+    if response:
+        return response
+    error_handling("Failed to change Incident state. ", response.text)  
+    
+
+def add_note_to_a_threat(config, params):
+    headers = _get_headers(config)
+    threat_id = params.get('threatID')
+    notes = params.get('note')
+    endpoint = 'web/api/{0}/threats/notes'.format(config.get('api_version'))
+    payload = {"data":{"text": notes},"filter":{"ids":[threat_id]}}    
+    url, verify_ssl = _build_url(config, method_name=endpoint)
+    response = _post(headers, url, body=payload, verify=verify_ssl)
+    if response:
+        return response
+    error_handling("Failed to add note. ", response.text)  
+  
+    
+    
 def isolate_agent_network(config, params):
     headers = _get_headers(config)
     groupIds = params.get("groupIds")
@@ -893,5 +923,7 @@ operations = {
     'get_output_schema_threats': get_output_schema_threats,
     'get_output_schema_threat_details': get_output_schema_threat_details,
     'get_output_schema_agents': get_output_schema_agents,
-    'get_threat_events': get_threat_events
+    'get_threat_events': get_threat_events,
+    'change_incident_status': change_incident_status,
+    'add_note_to_a_threat': add_note_to_a_threat
 }

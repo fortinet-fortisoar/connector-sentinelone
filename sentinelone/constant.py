@@ -808,3 +808,9 @@ Sort_Type = {
     'Ascending': 'asc',
     'Descending': 'desc'
 }
+
+Incident_State_List = {
+	'Unresolved': 'unresolved',
+	'Resolved': 'resolved',
+	'In Progress': 'in_progress'
+}
