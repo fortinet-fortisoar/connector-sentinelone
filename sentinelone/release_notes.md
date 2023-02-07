@@ -1,5 +1,6 @@
 #### What's Improved
 
 
-- Added the following operation and playbook
-    - Get Threat Events List
+- Added the following operations
+    - Change Incident Status
+    - Add Note to a Threat
