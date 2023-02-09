@@ -2,4 +2,5 @@
 
 
 - Added the following operation and playbook
-    - Get Threat Events List
+    - Change Incident Status
+    - Add Note to a Threat
