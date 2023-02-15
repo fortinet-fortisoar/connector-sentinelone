@@ -1,5 +1,5 @@
 """ Copyright start
-  Copyright (C) 2008 - 2022 Fortinet Inc.
+  Copyright (C) 2008 - 2023 Fortinet Inc.
   All rights reserved.
   FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
   Copyright end """
@@ -807,4 +807,10 @@ APP_Type_List = {
 Sort_Type = {
     'Ascending': 'asc',
     'Descending': 'desc'
+}
+
+Incident_State_List = {
+    'Unresolved': 'unresolved',
+    'Resolved': 'resolved',
+    'In Progress': 'in_progress'
 }

@@ -5,7 +5,7 @@
   "publisher": "Fortinet",
   "cs_approved": true,
   "cs_compatible": true,
-  "version": "3.1.1",
+  "version": "3.2.0",
   "category": "Analytics and SIEM",
   "icon_small_name": "small_icon.png",
   "icon_large_name": "large_icon.png",
@@ -13,7 +13,7 @@
   "ingestion_modes": [
     "scheduled"
   ],
-  "help_online": "https://docs.fortinet.com/document/fortisoar/3.1.1/sentinelone/460/sentinelone-v3-1-1",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
@@ -1959,17 +1959,6 @@
           "tooltip": "Specify a name of the threat that requires to be marked as safe"
         },
         {
-          "title": "From Scan",
-          "description": "(Optional) Select this option if the threat was detected as a result of a scan.",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "checkbox",
-          "name": "fromScan",
-          "value": false,
-          "tooltip": "Select this option if the threat was detected as a result of a scan."
-        },
-        {
           "title": "Limit Records",
           "description": "(Optional) The maximum number of results, per page, that this operation should return.",
           "required": false,
@@ -2048,17 +2037,6 @@
           "type": "text",
           "name": "displayName",
           "tooltip": "Name of the threat that requires mitigation."
-        },
-        {
-          "title": "From Scan",
-          "description": "(Optional) Select this option if the threat was detected as a result of a scan.",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "name": "fromScan",
-          "type": "checkbox",
-          "value": false,
-          "tooltip": "Select this option if the threat was detected as a result of a scan."
         },
         {
           "title": "Limit Records",
@@ -2460,6 +2438,74 @@
       ],
       "enabled": true,
       "output_schema": {}
+    },
+    {
+      "operation": "add_note_to_a_threat",
+      "title": "Add Note to a Threat",
+      "description": "Add note to one or multiple threats in SentinelOne based on the threat ID and note that you have specified.",
+      "category": "investigation",
+      "annotation": "add_note_to_a_threat",
+      "parameters": [
+        {
+          "title": "Threat ID",
+          "type": "text",
+          "name": "threatID",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "The ID of the threat based on which you want to add note to a threat in SentinelOne."
+        },
+        {
+          "title": "Note",
+          "type": "text",
+          "name": "note",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "Specify the note you want to add to the threat in SentinelOne."
+        }
+      ],
+      "enabled": true,
+      "output_schema": {
+        "affected": ""
+      }
+    },
+    {
+      "operation": "change_incident_status",
+      "title": "Change Incident Status",
+      "description": "Change Incident Status on SentinelOne based on the threat ID and incident status that you have specified.",
+      "category": "investigation",
+      "annotation": "change_incident_status",
+      "parameters": [
+        {
+          "title": "Threat ID",
+          "type": "text",
+          "name": "threatID",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "The ID of the threat based on which you want to change status of incident in SentinelOne."
+        },
+        {
+          "title": "Incident Status",
+          "description": "The status of the incident that you want to change status of incident in SentinelOne.",
+          "type": "select",
+          "name": "incidentStatus",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": "In Progress",
+          "options": [
+            "Unresolved",
+            "Resolved",
+            "In Progress"
+          ]
+        }
+      ],
+      "enabled": true,
+      "output_schema": {
+        "affected": ""
+      }
     },
     {
       "operation": "get_hash_details",
@@ -3405,36 +3451,6 @@
           "version": "",
           "publisher": "",
           "installedDate": ""
-        }
-      ]
-    },
-    {
-      "operation": "get_agent_process",
-      "title": "Get Agent Process",
-      "description": "Retrieves a list of processes running on an agent in SentinelOne based on the agent ID you have specified.",
-      "category": "investigation",
-      "annotation": "list_processes",
-      "parameters": [
-        {
-          "title": "Agent ID",
-          "description": "The ID of the agent whose list of running applications you want to retrieve from SentinelOne.",
-          "required": true,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "ids",
-          "tooltip": "The ID of the agent whose list of running applications you want to retrieve from SentinelOne."
-        }
-      ],
-      "enabled": true,
-      "output_schema": [
-        {
-          "startTime": "",
-          "processName": "",
-          "memoryUsage": "",
-          "cpuUsage": "",
-          "executablePath": "",
-          "pid": ""
         }
       ]
     },
