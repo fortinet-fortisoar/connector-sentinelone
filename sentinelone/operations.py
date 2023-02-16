@@ -1,5 +1,5 @@
 """ Copyright start
-  Copyright (C) 2008 - 2022 Fortinet Inc.
+  Copyright (C) 2008 - 2023 Fortinet Inc.
   All rights reserved.
   FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
   Copyright end """
@@ -11,7 +11,7 @@ from .utils import (_build_url, _get,
                     _get_headers, logout_user,
                     error_handling)
 from .constant import Threats_2_0, Threats_2_1, Threats_Details_2_0, Threats_Details_2_1, Agent_2_0, Agent_2_1, OS_Type, \
-    APP_Type_List, Sort_Type
+    APP_Type_List, Sort_Type, Incident_State_List
 from connectors.cyops_utilities.builtins import upload_file_to_cyops
 from django.conf import settings
 
@@ -689,10 +689,11 @@ def list_all_threats(config, params):
 
 
 def get_threat_events(config, params):
-    type_list, subtype_list = [],[]
+    type_list, subtype_list = [], []
     threat_id = params.pop('threat_id')
     headers = _get_headers(config)
-    url, verify_ssl = _build_url(config, method_name='web/api/' + config.get('api_version') + '/threats/' + str(threat_id) + '/explore/events')
+    url, verify_ssl = _build_url(config, method_name='web/api/' + config.get('api_version') + '/threats/' + str(
+        threat_id) + '/explore/events')
     eventTypes = params.get('eventTypes')
     if eventTypes:
         for etype in eventTypes:
@@ -788,18 +789,6 @@ def get_hash_details(config, params):
     error_handling("Failed to get hash details. ", hash_details.text)
 
 
-def get_agent_process(config, params):
-    headers = _get_headers(config)
-    url, verify_ssl = _build_url(config, method_name='web/api/' + config.get('api_version') + '/agents/processes')
-    logger.info(url)
-    agent_process = _get(headers, url, params=params, verify=verify_ssl)
-    if agent_process.get('data'):
-        return agent_process.get('data')
-    elif agent_process:
-        return agent_process
-    error_handling("Failed to get agent process. ", agent_process.text)
-
-
 def get_agent_passphrase(config, params):
     headers = _get_headers(config)
     additional_fields = params.get('additional_fields')
@@ -836,6 +825,38 @@ def get_agents(config, params):
     error_handling("Failed to receive Agent List. ", response.text)
 
 
+def change_incident_status(config, params):
+    headers = _get_headers(config)
+    threat_id = params.get('threatID')
+    endpoint = 'web/api/{0}/threats/incident'.format(config.get('api_version'))
+    payload = {
+        "data": {"incidentStatus": Incident_State_List[params.get('incidentStatus')]},
+        "filter": {"ids": [threat_id]}
+    }
+    url, verify_ssl = _build_url(config, method_name=endpoint)
+    response = _post(headers, url, body=payload, verify=verify_ssl)
+    if response.get('data'):
+        return response.get('data')
+    elif response:
+        return response
+    error_handling("Failed to change Incident state. ", response.text)
+
+
+def add_note_to_a_threat(config, params):
+    headers = _get_headers(config)
+    threat_id = params.get('threatID')
+    notes = params.get('note')
+    endpoint = 'web/api/{0}/threats/notes'.format(config.get('api_version'))
+    payload = {"data": {"text": notes}, "filter": {"ids": [threat_id]}}
+    url, verify_ssl = _build_url(config, method_name=endpoint)
+    response = _post(headers, url, body=payload, verify=verify_ssl)
+    if response.get('data'):
+        return response.get('data')
+    elif response:
+        return response
+    error_handling("Failed to add note. ", response.text)
+
+
 def get_output_schema_threats(config, params):
     if config.get('api_version') == 'v2.0':
         return Threats_2_0
@@ -863,7 +884,6 @@ operations = {
     'reconnect_agent': reconnect_agent,
     'get_agent_passphrase': get_agent_passphrase,
     'get_agent_application': get_agent_application,
-    'get_agent_process': get_agent_process,
     'broadcast_message_to_agent': broadcast_message_to_agent,
     'initiate_agent_scan': initiate_agent_scan,
     'abort_agent_scan': abort_agent_scan,
@@ -893,5 +913,7 @@ operations = {
     'get_output_schema_threats': get_output_schema_threats,
     'get_output_schema_threat_details': get_output_schema_threat_details,
     'get_output_schema_agents': get_output_schema_agents,
-    'get_threat_events': get_threat_events
+    'get_threat_events': get_threat_events,
+    'change_incident_status': change_incident_status,
+    'add_note_to_a_threat': add_note_to_a_threat
 }

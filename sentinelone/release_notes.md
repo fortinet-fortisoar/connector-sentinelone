@@ -1,5 +1,12 @@
 #### What's Improved
 
+- Added the following operations and playbooks:
+    - Change Incident Status
+    - Add Note to a Threat
 
-- Added the following operation and playbook
-    - Get Threat Events List
+#### What's Fixed
+
+- Removed deprecated operation:
+    - Get Agent Process
+- Removed deprecated parameter from operations:
+    - 'From Scan' parameter removed from 'Mitigate Threat' and 'Mark Threat as Benign' operations.
