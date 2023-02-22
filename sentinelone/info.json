@@ -13,7 +13,7 @@
   "ingestion_modes": [
     "scheduled"
   ],
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/3.2.0/sentinelone/509/sentinelone-v3-2-0",
   "configuration": {
     "fields": [
       {
@@ -2442,7 +2442,7 @@
     {
       "operation": "add_note_to_a_threat",
       "title": "Add Note to a Threat",
-      "description": "Add note to one or multiple threats in SentinelOne based on the threat ID and note that you have specified.",
+      "description": "Adds a note to one or multiple threats in SentinelOne based on the threat ID and the note that you have specified.",
       "category": "investigation",
       "annotation": "add_note_to_a_threat",
       "parameters": [
@@ -2453,7 +2453,7 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "description": "The ID of the threat based on which you want to add note to a threat in SentinelOne."
+          "description": "Specify the threat ID to which you want to add the note in SentinelOne."
         },
         {
           "title": "Note",
@@ -2462,7 +2462,7 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "description": "Specify the note you want to add to the threat in SentinelOne."
+          "description": "Specify the note to add in SentinelOne."
         }
       ],
       "enabled": true,
@@ -2473,7 +2473,7 @@
     {
       "operation": "change_incident_status",
       "title": "Change Incident Status",
-      "description": "Change Incident Status on SentinelOne based on the threat ID and incident status that you have specified.",
+      "description": "Changes Incident Status on SentinelOne based on the threat ID and incident status that you have specified.",
       "category": "investigation",
       "annotation": "change_incident_status",
       "parameters": [
@@ -2484,11 +2484,11 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "description": "The ID of the threat based on which you want to change status of incident in SentinelOne."
+          "description": "Specify the theat ID whose incident status you want to change in SentinelOne."
         },
         {
           "title": "Incident Status",
-          "description": "The status of the incident that you want to change status of incident in SentinelOne.",
+          "description": "Specify the new status to which you want to update the incident to in SentinelOne.",
           "type": "select",
           "name": "incidentStatus",
           "required": true,
