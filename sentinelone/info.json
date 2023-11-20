@@ -5,7 +5,7 @@
   "publisher": "Fortinet",
   "cs_approved": true,
   "cs_compatible": true,
-  "version": "3.2.0",
+  "version": "3.3.0",
   "category": "Analytics and SIEM",
   "icon_small_name": "small_icon.png",
   "icon_large_name": "large_icon.png",
@@ -13,7 +13,7 @@
   "ingestion_modes": [
     "scheduled"
   ],
-  "help_online": "https://docs.fortinet.com/document/fortisoar/3.2.0/sentinelone/509/sentinelone-v3-2-0",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
@@ -2440,6 +2440,135 @@
       "output_schema": {}
     },
     {
+      "operation": "fetch_threat_file",
+      "title": "Fetch Threat File",
+      "description": "Fetch a file associated with the threat that matches the filter.",
+      "category": "investigation",
+      "annotation": "fetch_threat_file",
+      "parameters": [
+        {
+          "title": "Threat IDs",
+          "description": "Specify the comma-separated threat IDs whose details you want to retrieve from SentinelOne.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "ids",
+          "tooltip": "Specify the comma-separated threat IDs whose details you want to retrieve from SentinelOne."
+        },
+        {
+          "title": "Password",
+          "description": "Specify the file encryption password.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "password",
+          "name": "password",
+          "tooltip": "Specify the file encryption password."
+        },
+        {
+          "title": "Additional Fields",
+          "name": "additional_fields",
+          "type": "json",
+          "value": {
+            "accountIds": "",
+            "agentIds": "",
+            "siteIds": "",
+            "query": "",
+            "contentHashes": "",
+            "createdAt__g te": "",
+            "updatedAt__g te": "",
+            "incidentStatuses": ""
+          },
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "tooltip": "Additional fields, in the JSON format, based on which you want to retrieve threat files from SentinelOne.",
+          "description": "(Optional) Additional fields, in the JSON format, based on which you want to threat files from SentinelOne."
+        }
+      ],
+      "enabled": true,
+      "output_schema": {}
+    },
+    {
+      "operation": "get_threat_timeline",
+      "title": "Get Threat Timeline",
+      "description": "Retrieve the threat's timeline details for a specified threat from SentinelOne.",
+      "category": "investigation",
+      "annotation": "get_threat_timeline",
+      "parameters": [
+        {
+          "title": "Threat ID",
+          "description": "Specify the threat ID whose details you want to retrieve from SentinelOne.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "id",
+          "tooltip": "Specify the threat ID whose details you want to retrieve from SentinelOne."
+        },
+        {
+          "title": "Sort Order",
+          "description": "(Optional) Sorting order of the result (threats), choose between Ascending or Descending.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "name": "sortOrder",
+          "options": [
+            "Ascending",
+            "Descending"
+          ],
+          "tooltip": "Sorting order of the result."
+        },
+        {
+          "title": "Offset",
+          "description": "(Optional) Skips the specified number of results from the total results.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "skip",
+          "value": 0,
+          "tooltip": "Skips the specified number of results (0-1000) from the total results."
+        },
+        {
+          "title": "Limit Records",
+          "description": "(Optional) Maximum number of results, per page, that this operation should return.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "limit",
+          "value": 10,
+          "tooltip": "Maximum number of results, per page, that this operation should return. Range should be between 1 to 1000."
+        },
+        {
+          "title": "Cursor",
+          "description": "(Optional) This parameter is used only if a previous operation has returned a partial result. If a previous response contains a cursor element, then the value of the cursor element includes a cursor parameter that specifies a starting point to use for subsequent calls.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "cursor",
+          "tooltip": "This parameter is used only if a previous operation has returned a partial result. If a previous response contains a cursor element, then the value of the cursor element includes a cursor parameter that specifies a starting point to use for subsequent calls. For e.g YWdlbnRfaWQ6NTgwMjkzODE=",
+          "placeholder": "e.g YWdlbnRfaWQ6NTgwMjkzODE="
+        },
+        {
+          "title": "Additional Fields",
+          "name": "additional_fields",
+          "type": "json",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "tooltip": "Additional fields, in the JSON format, based on which you want to retrieve threat timeline from SentinelOne.",
+          "description": "(Optional) Additional fields, in the JSON format, based on which you want to threat timeline from SentinelOne."
+        }
+      ],
+      "enabled": true,
+      "output_schema": {}
+    },
+    {
       "operation": "add_note_to_a_threat",
       "title": "Add Note to a Threat",
       "description": "Adds a note to one or multiple threats in SentinelOne based on the threat ID and the note that you have specified.",
@@ -3774,6 +3903,54 @@
       "output_schema": {
         "total": ""
       }
+    },
+    {
+      "operation": "custom_endpoint",
+      "title": "Custom API Endpoint",
+      "description": "Allows querying a custom API endpoint in SentinelOne based on the endpoint and request you have specified.",
+      "category": "query",
+      "annotation": "custom_endpoint",
+      "output_schema": {},
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "API Endpoint",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "endpoint",
+          "placeholder": "https://<server_url>/web/api/<api_version>/threats",
+          "description": "Specify the API Endpoint using which you want to make the API call. NOTE: The API endpoint for SentinelOne must be specified in the following format: https://<server_url>/web/api/<api_version>/threats.",
+          "tooltip": "Specify the API Endpoint using which you want to make the API call. NOTE: The API endpoint for SentinelOne must be specified in the following format: https://<server_url>/web/api/<api_version>/threats."
+        },
+        {
+          "title": "HTTP method",
+          "name": "method",
+          "description": "Select the HTTP method to be used for the API call. You can choose between GET or POST.",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "value": "GET",
+          "options": [
+            "GET",
+            "POST"
+          ],
+          "tooltip": "Select the HTTP method to be used for the API call. You can choose between GET or POST."
+        },
+        {
+          "title": "Request Parameters/Body",
+          "tooltip": "(Optional) Specify the 'Request Parameters' or the 'Request Body' that you want to send with the GET or POST API call respectively.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "body",
+          "placeholder": "{}",
+          "description": "(Optional) Specify the 'Request Parameters' or the 'Request Body' that you want to send with the GET or POST API call respectively."
+        }
+      ]
     },
     {
       "operation": "get_output_schema_threats",

@@ -3,12 +3,12 @@
   "data": [
     {
       "@type": "WorkflowCollection",
-      "name": "Sample - SentinelOne - 3.2.0",
+      "name": "Sample - SentinelOne - 3.3.0",
       "description": "Sample playbooks for \"SentinelOne\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
       "visible": true,
       "image": null,
       "uuid": "e3552777-a405-4a37-bc0f-21fe074cd6cd",
-      "id": 281,
+      "id": 477,
       "deletedAt": null,
       "importedBy": [],
       "recordTags": [],
@@ -39,7 +39,7 @@
                 "name": "SentinelOne",
                 "config": "",
                 "params": [],
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "fetch_threats",
                 "operationTitle": "Fetch Threats",
@@ -96,7 +96,7 @@
           "groups": [],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "04d62420-20a0-4402-bac9-1b9f20f4de8d",
-          "id": 3915,
+          "id": 6470,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -172,7 +172,7 @@
                   "totalMemory__lte": 5,
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "fetch_agent_logs",
                 "operationTitle": "Fetch Agents Logs",
@@ -202,7 +202,7 @@
           "groups": [],
           "priority": null,
           "uuid": "06f57ada-929a-46ad-ad38-6a21ab22edda",
-          "id": 3916,
+          "id": 6471,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -239,7 +239,7 @@
                 "params": {
                   "queryId": "q675541711278284c27a1a3469803b836"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_query_status",
                 "operationTitle": "Get Query Status",
@@ -297,7 +297,103 @@
           "groups": [],
           "priority": null,
           "uuid": "0a9041a1-b207-4639-bb26-cc85eccaceca",
-          "id": 3917,
+          "id": 6472,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Custom API Endpoint",
+          "aliasName": null,
+          "tag": null,
+          "description": "Allows querying a custom API endpoint in SentinelOne based on the endpoint and request you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1700476330,
+          "collection": "/api/3/workflow_collections/e3552777-a405-4a37-bc0f-21fe074cd6cd",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/ae631a77-1e44-4539-bcab-8cf065277d7b",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Custom API Endpoint",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "body": "",
+                  "method": "GET",
+                  "endpoint": "https://<server_url>/web/api/<api_version>/threats"
+                },
+                "version": "3.3.0",
+                "connector": "sentinelone",
+                "operation": "custom_endpoint",
+                "operationTitle": "Custom API Endpoint",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "61c66e28-36fc-41ce-bbcc-49d89a25a5db"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "9cd5bb45-7c85-4b80-a13a-cef4a4b8c526",
+                "title": "SentinelOne: Custom API Endpoint",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "ae631a77-1e44-4539-bcab-8cf065277d7b"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Custom API Endpoint",
+              "targetStep": "/api/3/workflow_steps/61c66e28-36fc-41ce-bbcc-49d89a25a5db",
+              "sourceStep": "/api/3/workflow_steps/ae631a77-1e44-4539-bcab-8cf065277d7b",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "e2e6bf7b-6974-498f-82de-fcb520fb0aaa"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "0b123cc9-264b-4132-b2c6-7e82e8f4b7a3",
+          "id": 6508,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -497,7 +593,7 @@
           "groups": [],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "0e105d7a-ea0c-4d23-b80f-cde5b838739a",
-          "id": 3918,
+          "id": 6473,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -544,7 +640,7 @@
                   "sortOrder": "",
                   "extra_parameters": ""
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_cve",
                 "operationTitle": "Get CVEs",
@@ -602,7 +698,106 @@
           "groups": [],
           "priority": null,
           "uuid": "103c9daf-b8f2-43df-824f-d7910ce0b448",
-          "id": 3919,
+          "id": 6474,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Threat Timeline",
+          "aliasName": null,
+          "tag": null,
+          "description": "Retrieve the threat's timeline details for a specified threat from SentinelOne.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1700476179,
+          "collection": "/api/3/workflow_collections/e3552777-a405-4a37-bc0f-21fe074cd6cd",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/03417a5d-d22a-4859-9103-86cd12253f1d",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "ebf06aa5-2711-4c2b-976b-1a05e8af1eda",
+                "title": "SentinelOne: Get Threat Timeline",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "03417a5d-d22a-4859-9103-86cd12253f1d"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Threat Timeline",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "id": "737238636328018529",
+                  "skip": 0,
+                  "limit": 10,
+                  "cursor": "",
+                  "sortOrder": "",
+                  "additional_fields": ""
+                },
+                "version": "3.3.0",
+                "connector": "sentinelone",
+                "operation": "get_threat_timeline",
+                "operationTitle": "Get Threat Timeline",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "09b670aa-4701-4e18-b7cc-05ee575c03da"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Threat Timeline",
+              "targetStep": "/api/3/workflow_steps/09b670aa-4701-4e18-b7cc-05ee575c03da",
+              "sourceStep": "/api/3/workflow_steps/03417a5d-d22a-4859-9103-86cd12253f1d",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "8e16f1a5-44f6-419b-82a7-bdbf8d288262"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "157201ba-2dea-4388-9d73-43a45d87a2bd",
+          "id": 6507,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -673,7 +868,7 @@
                   "subQuery": "",
                   "sortOrder": ""
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_events",
                 "operationTitle": "Get Events",
@@ -703,7 +898,7 @@
           "groups": [],
           "priority": null,
           "uuid": "16ffb0a2-3951-4b27-a831-ab5124e54ee4",
-          "id": 3920,
+          "id": 6475,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -751,7 +946,7 @@
                   "agentMachineTypes": "",
                   "agentIsDecommissioned": ""
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_applications",
                 "operationTitle": "Get Applications",
@@ -809,7 +1004,7 @@
           "groups": [],
           "priority": null,
           "uuid": "1bad5396-cf12-4a18-a0a5-f55e61247477",
-          "id": 3921,
+          "id": 6476,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -885,7 +1080,7 @@
                   "totalMemory__lte": 5,
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "abort_agent_scan",
                 "operationTitle": "Abort Agent Scan",
@@ -915,7 +1110,7 @@
           "groups": [],
           "priority": null,
           "uuid": "1f4212e0-446b-4154-8aea-3bb10025ad65",
-          "id": 3922,
+          "id": 6477,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -952,7 +1147,7 @@
                 "params": {
                   "hash_id": "e104e267ad1f0e5024369032720ee028d84fda8c"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_hash_details",
                 "operationTitle": "Get Hash Details",
@@ -1010,7 +1205,7 @@
           "groups": [],
           "priority": null,
           "uuid": "2b4fbda4-d37d-4fb8-bc07-3ba299f115d7",
-          "id": 3923,
+          "id": 6478,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -1075,7 +1270,7 @@
                 "params": {
                   "agent_application_id": "774341800335007828"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_application_cve",
                 "operationTitle": "Get Application CVEs",
@@ -1105,7 +1300,7 @@
           "groups": [],
           "priority": null,
           "uuid": "2b56ad05-5ba5-4f5e-92fc-af7289d41c68",
-          "id": 3924,
+          "id": 6479,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -1171,7 +1366,7 @@
                   "threat_id": "737238640203555438",
                   "export_format": "RAW"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "export_forensics_threat",
                 "operationTitle": "Export Threat",
@@ -1201,7 +1396,7 @@
           "groups": [],
           "priority": null,
           "uuid": "2f611fa4-cf96-450e-a3db-2838aec3d2e1",
-          "id": 3925,
+          "id": 6480,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -1242,7 +1437,7 @@
                   "isUninstalled": "",
                   "isDecommissioned": ""
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "agent_action",
                 "operationTitle": "Agent Action",
@@ -1300,7 +1495,7 @@
           "groups": [],
           "priority": null,
           "uuid": "2ff106c7-f49d-4447-b2fe-79b9a74c7fad",
-          "id": 3926,
+          "id": 6481,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -1337,7 +1532,7 @@
                 "params": {
                   "threat_id": "737238636328018529"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "threat_forensic_details",
                 "operationTitle": "Threat Forensic Details",
@@ -1395,7 +1590,7 @@
           "groups": [],
           "priority": null,
           "uuid": "3198541a-e092-4caf-8129-4e75071aefde",
-          "id": 3927,
+          "id": 6482,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -1433,7 +1628,7 @@
                   "note": "Sample Note",
                   "threatID": "1426608918205417500"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "add_note_to_a_threat",
                 "operationTitle": "Add Note to a Threat",
@@ -1490,7 +1685,7 @@
           "groups": [],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "3877dd59-1411-45d9-bf3a-313f4d827e63",
-          "id": 3950,
+          "id": 6483,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -1558,7 +1753,7 @@
                   "threat_id": "737238636328018529",
                   "accountIds": "571644020260225832"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "threat_forensics",
                 "operationTitle": "Get Threat Forensics",
@@ -1588,7 +1783,7 @@
           "groups": [],
           "priority": null,
           "uuid": "3b0b1007-73e0-4d8e-9b83-6b4426572959",
-          "id": 3928,
+          "id": 6484,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -1623,7 +1818,7 @@
                 "name": "SentinelOne",
                 "config": "",
                 "params": [],
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "free_text_filters",
                 "operationTitle": "Free Text Filters",
@@ -1681,7 +1876,7 @@
           "groups": [],
           "priority": null,
           "uuid": "525835e8-4739-429c-ba3d-d0e9bb13a9ab",
-          "id": 3929,
+          "id": 6485,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -1758,7 +1953,7 @@
                   "totalMemory__lte": 5,
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_agents",
                 "operationTitle": "Get Agents",
@@ -1788,7 +1983,7 @@
           "groups": [],
           "priority": null,
           "uuid": "595b57dd-d8db-440f-944a-48f8ef972e00",
-          "id": 3930,
+          "id": 6486,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -1837,7 +2032,7 @@
                   "totalMemory__lte": "5",
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "broadcast_message_to_agent",
                 "operationTitle": "Broadcast Message To Agent",
@@ -1895,7 +2090,7 @@
           "groups": [],
           "priority": null,
           "uuid": "6158c535-0a69-40e0-b243-100c7d0d3552",
-          "id": 3931,
+          "id": 6487,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -1971,7 +2166,7 @@
                   "totalMemory__lte": 5,
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "initiate_agent_scan",
                 "operationTitle": "Initiate Agent Scan",
@@ -2001,7 +2196,7 @@
           "groups": [],
           "priority": null,
           "uuid": "642c7066-2ded-4102-9a46-c109af44c15c",
-          "id": 3932,
+          "id": 6488,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -2038,7 +2233,7 @@
                 "params": {
                   "ids": "733643234093413940"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_agent_passphrase",
                 "operationTitle": "Get Agent Passphrase",
@@ -2096,7 +2291,7 @@
           "groups": [],
           "priority": null,
           "uuid": "65c9ccbf-5e83-4ce6-9f0d-b489f5851495",
-          "id": 3933,
+          "id": 6489,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -2172,7 +2367,7 @@
                   "totalMemory__lte": 5,
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "reconnect_agent",
                 "operationTitle": "Reconnect Agent",
@@ -2202,7 +2397,7 @@
           "groups": [],
           "priority": null,
           "uuid": "66fd2680-c0f5-46e1-9ea5-d48e2578cd7c",
-          "id": 3934,
+          "id": 6490,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -2277,7 +2472,7 @@
                   "agentMachineTypes": "Laptop",
                   "agentIsDecommissioned": ""
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "export_applications_risk",
                 "operationTitle": "Export Applications Risk",
@@ -2307,7 +2502,7 @@
           "groups": [],
           "priority": null,
           "uuid": "6ddd2591-9f2b-4031-bf8f-a93fffaa5d71",
-          "id": 3935,
+          "id": 6491,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -2349,7 +2544,7 @@
                   "displayName": "word_sample_20191011065710.doc",
                   "targetScope": "group"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "mark_threat_as_benign",
                 "operationTitle": "Mark Threat As Benign",
@@ -2407,7 +2602,7 @@
           "groups": [],
           "priority": null,
           "uuid": "728aafd7-07a5-457f-b35b-1a313fa133ee",
-          "id": 3936,
+          "id": 6492,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -2450,7 +2645,7 @@
                   "createdAt__gt": "",
                   "createdAt__lte": ""
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "list_all_threats",
                 "operationTitle": "List All Threat",
@@ -2508,7 +2703,7 @@
           "groups": [],
           "priority": null,
           "uuid": "72da8198-09f5-42f7-94b7-0185d8e8fb1e",
-          "id": 3937,
+          "id": 6493,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -2634,7 +2829,7 @@
                   "createdAt__gt": "{{vars.last_pull_time}}",
                   "updatedAt__gt": "{{vars.last_pull_time}}"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "fetch_threats",
                 "operationTitle": "Fetch Threats",
@@ -2699,7 +2894,7 @@
           "groups": [],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "87f4cd59-9142-4397-b753-b7557db1107d",
-          "id": 3938,
+          "id": 6494,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -2767,7 +2962,7 @@
                   "threatID": "1426608918205417370",
                   "incidentStatus": "In Progress"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "change_incident_status",
                 "operationTitle": "Change Incident Status",
@@ -2796,7 +2991,7 @@
           "groups": [],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "8855e58e-d9a5-4f88-89c6-609863713f02",
-          "id": 3949,
+          "id": 6495,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -2866,7 +3061,7 @@
                   "contentHash": "ad56917d0bbece0ab09d76d7e3d7cc8b6afb09a2",
                   "displayName": "word_sample_20191011065710.doc"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "mitigate_threats",
                 "operationTitle": "Mitigate Threat",
@@ -2896,7 +3091,7 @@
           "groups": [],
           "priority": null,
           "uuid": "887f64bb-f659-4540-9b9a-75b59fddbe3a",
-          "id": 3939,
+          "id": 6496,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -2968,7 +3163,7 @@
                   "eventSubTypes": "",
                   "additional_fields": ""
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_threat_events",
                 "operationTitle": "Get Threat Events List",
@@ -2997,7 +3192,7 @@
           "groups": [],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "a9949123-387a-4209-b623-d0b1331a15a2",
-          "id": 3940,
+          "id": 6497,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -3041,7 +3236,7 @@
                   "queryType": "events",
                   "accountIds": "571644020260225832"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "create_query",
                 "operationTitle": "Create Query And Get Query ID",
@@ -3099,7 +3294,7 @@
           "groups": [],
           "priority": null,
           "uuid": "ab66db6e-2ab5-41c2-bbd7-7e329beb783d",
-          "id": 3941,
+          "id": 6498,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -3167,7 +3362,7 @@
                   "threat_id": "737238636328018529",
                   "accountIds": "571644020260225832"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "threat_seen_on_network",
                 "operationTitle": "Get Threat Seen on Network",
@@ -3197,7 +3392,7 @@
           "groups": [],
           "priority": null,
           "uuid": "ac1f7766-b6ea-4516-9744-6d5b562ee366",
-          "id": 3942,
+          "id": 6499,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -3272,7 +3467,7 @@
                   "agentMachineTypes": "",
                   "agentIsDecommissioned": ""
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_application_count",
                 "operationTitle": "Get Application Count",
@@ -3302,7 +3497,7 @@
           "groups": [],
           "priority": null,
           "uuid": "c2170bed-a8d6-4b71-bc25-6622c82febb7",
-          "id": 3943,
+          "id": 6500,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -3339,7 +3534,7 @@
                 "params": {
                   "ids": "733643234093413940"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_agent_application",
                 "operationTitle": "Get Agent Application",
@@ -3397,7 +3592,112 @@
           "groups": [],
           "priority": null,
           "uuid": "ce83c0d5-0cac-4300-a584-47a67b9b151b",
-          "id": 3944,
+          "id": 6501,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "sentinelone"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Fetch Threat File",
+          "aliasName": null,
+          "tag": null,
+          "description": "Fetch a file associated with the threat that matches the filter.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1700476062,
+          "collection": "/api/3/workflow_collections/e3552777-a405-4a37-bc0f-21fe074cd6cd",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/b4139421-80ad-4f7c-921c-2674bf779fe8",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Fetch Threat File",
+              "description": null,
+              "arguments": {
+                "name": "SentinelOne",
+                "config": "",
+                "params": {
+                  "ids": "737238636328018529",
+                  "password": "",
+                  "additional_fields": {
+                    "query": "",
+                    "siteIds": "",
+                    "agentIds": "",
+                    "accountIds": "",
+                    "contentHashes": "",
+                    "createdAt__g te": "",
+                    "updatedAt__g te": "",
+                    "incidentStatuses": ""
+                  }
+                },
+                "version": "3.3.0",
+                "connector": "sentinelone",
+                "operation": "fetch_threat_file",
+                "operationTitle": "Fetch Threat File",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "29dae9e3-e336-4e22-ac0f-af17fcd383cb"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "8ab87bd9-4ddc-4117-ab5b-0f789a6cd322",
+                "title": "SentinelOne: Fetch Threat File",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "b4139421-80ad-4f7c-921c-2674bf779fe8"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Fetch Threat File",
+              "targetStep": "/api/3/workflow_steps/29dae9e3-e336-4e22-ac0f-af17fcd383cb",
+              "sourceStep": "/api/3/workflow_steps/b4139421-80ad-4f7c-921c-2674bf779fe8",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "4845096f-b2d9-4984-9862-67e76b638ad5"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "e61558c0-c167-41c1-b42a-07c76ae30e26",
+          "id": 6506,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -3441,7 +3741,7 @@
                   "sortOrder": "",
                   "event_type": "Events"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_events_by_type",
                 "operationTitle": "Get Events By Type",
@@ -3499,7 +3799,7 @@
           "groups": [],
           "priority": null,
           "uuid": "f66604e7-3b0d-4718-bf99-213fb809c6fb",
-          "id": 3945,
+          "id": 6502,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -3547,7 +3847,7 @@
                   "totalMemory__lte": 5,
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_agent_count",
                 "operationTitle": "Get Agent Count",
@@ -3605,7 +3905,7 @@
           "groups": [],
           "priority": null,
           "uuid": "f9c1742d-9125-4dc1-922a-cbe5d2bbeacd",
-          "id": 3946,
+          "id": 6503,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -3642,7 +3942,7 @@
                 "params": {
                   "queryId": "q675541711278284c27a1a3469803b836"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "cancel_running_query",
                 "operationTitle": "Cancel Running Query",
@@ -3700,7 +4000,7 @@
           "groups": [],
           "priority": null,
           "uuid": "fa035480-9208-47f2-90f7-329a4608744b",
-          "id": 3947,
+          "id": 6504,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -3765,7 +4065,7 @@
                 "params": {
                   "ids": "737238636328018529"
                 },
-                "version": "3.2.0",
+                "version": "3.3.0",
                 "connector": "sentinelone",
                 "operation": "get_threat_details",
                 "operationTitle": "Get Threat Details",
@@ -3795,7 +4095,7 @@
           "groups": [],
           "priority": null,
           "uuid": "fa80e4c7-0706-4d4d-84ff-2b282a5cfa70",
-          "id": 3948,
+          "id": 6505,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
