@@ -1,8 +1,9 @@
-""" Copyright start
-  Copyright (C) 2008 - 2023 Fortinet Inc.
-  All rights reserved.
-  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
-  Copyright end """
+"""
+Copyright start
+MIT License
+Copyright (c) 2023 Fortinet Inc
+Copyright end
+"""
 
 import json, os
 from connectors.core.connector import get_logger, ConnectorError
@@ -32,6 +33,18 @@ def convert_int_str(params):
         accountIds = str(accountIds).split(",")
         params.update({'accountIds': accountIds})
     return params
+
+
+def check_payload(payload):
+    updated_payload = {}
+    for key, value in payload.items():
+        if isinstance(value, dict):
+            nested = check_payload(value)
+            if len(nested.keys()) > 0:
+                updated_payload[key] = nested
+        elif value != '' and value is not None:
+            updated_payload[key] = value
+    return updated_payload
 
 
 def get_payload(params):
@@ -674,6 +687,45 @@ def get_threat_details(config, params):
     error_handling("Failed to get threat details. ", threat_detail.text)
 
 
+def fetch_threat_file(config, params):
+    headers = _get_headers(config)
+    threat_ids = params.get('ids')
+    endpoint = 'web/api/{0}/threats/fetch-file'.format(config.get('api_version'))
+    payload = {
+        "data": {"password": params.get('password')},
+        "filter": {"ids": [threat_ids]}
+    }
+    additional_fields = params.get('additional_fields')
+    if additional_fields:
+        payload['filter'].update(additional_fields)
+    payload = check_payload(payload)
+    url, verify_ssl = _build_url(config, method_name=endpoint)
+    response = _post(headers, url, body=payload, verify=verify_ssl)
+    if response.get('data'):
+        return response.get('data')
+    elif response:
+        return response
+    error_handling("Failed to fetch threat file. ", response.text)
+
+
+def get_threat_timeline(config, params):
+    headers = _get_headers(config)
+    sortOrder = params.get('sortOrder')
+    if sortOrder:
+        sortOrder = {'sortOrder': Sort_Type.get(sortOrder)}
+        params.update(sortOrder)
+    endpoint = 'web/api/{0}/threats/{1}/timeline'.format(config.get('api_version'), params.pop('id'))
+    additional_fields = params.get('additional_fields')
+    if additional_fields:
+        params.update(additional_fields)
+    params = {k: v for k, v in params.items() if v is not None and v != ''}
+    url, verify_ssl = _build_url(config, method_name=endpoint)
+    threat_detail = _get(headers, url, verify=verify_ssl, params=params)
+    if threat_detail:
+        return threat_detail
+    error_handling("Failed to get threat timeline. ", threat_detail.text)
+
+
 def list_all_threats(config, params):
     headers = _get_headers(config)
     url, verify_ssl = _build_url(config, method_name='web/api/' + config.get('api_version') + '/threats')
@@ -857,6 +909,20 @@ def add_note_to_a_threat(config, params):
     error_handling("Failed to add note. ", response.text)
 
 
+def custom_endpoint(config, params):
+    headers = _get_headers(config)
+    endpoint = params.get('endpoint')
+    body = params.get('body')
+    method = params.get('method')
+    if method == "GET":
+        payload = check_payload(body)
+        response = _get(headers, url=endpoint, params=payload, verify=config.get('verify_ssl'))
+    else:
+        data = json.dumps(check_payload(body))
+        response = _post(headers, url=endpoint, body=data, verify=config.get('verify_ssl'))
+    return response.json()
+
+
 def get_output_schema_threats(config, params):
     if config.get('api_version') == 'v2.0':
         return Threats_2_0
@@ -889,6 +955,8 @@ operations = {
     'abort_agent_scan': abort_agent_scan,
     'get_hash_details': get_hash_details,
     'get_threat_details': get_threat_details,
+    'fetch_threat_file': fetch_threat_file,
+    'get_threat_timeline': get_threat_timeline,
     'mitigate_threats': mitigate_threats,
     'fetch_agent_logs': fetch_agent_logs,
     'get_agent_count': get_agent_count,
@@ -915,5 +983,6 @@ operations = {
     'get_output_schema_agents': get_output_schema_agents,
     'get_threat_events': get_threat_events,
     'change_incident_status': change_incident_status,
-    'add_note_to_a_threat': add_note_to_a_threat
+    'add_note_to_a_threat': add_note_to_a_threat,
+    'custom_endpoint': custom_endpoint
 }
