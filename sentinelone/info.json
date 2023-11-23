@@ -3,7 +3,7 @@
   "label": "SentinelOne",
   "description": "SentinelOne that provides threat detection, hunting, and response features that enable organizations to discover vulnerabilities and protect IT operations. This connector facilitates automated operations related to events, threats, agents, query, and applications.",
   "publisher": "Fortinet",
-  "cs_approved": true,
+  "cs_approved": false,
   "cs_compatible": true,
   "version": "3.3.0",
   "category": "Analytics and SIEM",
