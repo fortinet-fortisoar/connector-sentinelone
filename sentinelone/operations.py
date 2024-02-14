@@ -1,11 +1,11 @@
 """
 Copyright start
 MIT License
-Copyright (c) 2023 Fortinet Inc
+Copyright (c) 2024 Fortinet Inc
 Copyright end
 """
 
-import json, os
+import json, os, requests
 from connectors.core.connector import get_logger, ConnectorError
 from .utils import (_build_url, _get,
                     _post,
@@ -909,6 +909,65 @@ def add_note_to_a_threat(config, params):
     error_handling("Failed to add note. ", response.text)
 
 
+def create_blacklist_item(config, params):
+    try:
+        headers = _get_headers(config)
+        endpoint = 'web/api/{0}/restrictions'.format(config.get('api_version'))
+        url, verify_ssl = _build_url(config, method_name=endpoint)
+        restriction_type = "black_hash"
+        hashValue = params.pop("hashValue", "")
+        osType = params.pop("osType", "").lower()
+        description = params.pop("description", "")
+        tenant = params.pop("tenant", "")
+        accountIds = params.pop("accountIds")
+        if accountIds:
+            accountIds = str(accountIds).split(",")
+        else:
+            return {
+                "statusCode": "400",
+                "statusMessage": "Account id cannot be empty"
+            }
+        payload = create_payload(params)
+        payload["data"] = {
+            "osType": osType,
+            "value": hashValue,
+            "type": restriction_type,
+            "description": description
+        }
+        payload["filter"] = {"accountIds": accountIds, "tenant": tenant}
+        response = requests.post(url, data=json.dumps(payload), headers=headers)
+        if response.status_code == 200:
+            return {
+                "statusCode": response.status_code,
+                "statusMessage": "Hash Value(s) Created Successfully",
+                "details": response.json(),
+            }
+        elif (response.status_code == 400 and response.json()["errors"][0]["title"] == "Already Exists Error"):
+            return {
+                "statusCode": response.status_code,
+                "statusMessage": response.json()["errors"][0]["detail"],
+                "details": response.json(),
+            }
+        else:
+            return {"response": response}
+    except Exception as Err:
+        logger.exception("An exception occurred: {}".format(Err))
+        raise ConnectorError("An exception occurred: {}".format(Err))
+
+
+def get_alerts(config, params):
+    headers = _get_headers(config)
+    endpoint = 'web/api/{0}/cloud-detection/alerts'.format(config.get('api_version'))
+    additional_fields = params.get('additional_fields')
+    if additional_fields:
+        params.pop('additional_fields')
+        params.update(additional_fields)
+    payload = {k: v for k, v in params.items() if v is not None and v != ''}
+    response = _get(headers, url, params=payload, verify=verify_ssl)
+    if response:
+        return response
+    error_handling("Failed to get alerts.", response.text)
+
 def custom_endpoint(config, params):
     headers = _get_headers(config)
     endpoint = params.get('endpoint')
@@ -984,5 +1043,7 @@ operations = {
     'get_threat_events': get_threat_events,
     'change_incident_status': change_incident_status,
     'add_note_to_a_threat': add_note_to_a_threat,
+    'create_blacklist_item': create_blacklist_item,
+    'get_alerts': get_alerts,
     'custom_endpoint': custom_endpoint
 }

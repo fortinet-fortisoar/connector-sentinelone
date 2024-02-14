@@ -5,7 +5,7 @@
   "publisher": "Fortinet",
   "cs_approved": false,
   "cs_compatible": true,
-  "version": "3.3.0",
+  "version": "3.4.0",
   "category": "Analytics and SIEM",
   "icon_small_name": "small_icon.png",
   "icon_large_name": "large_icon.png",
@@ -13,7 +13,7 @@
   "ingestion_modes": [
     "scheduled"
   ],
-  "help_online": "https://docs.fortinet.com/document/fortisoar/3.3.0/sentinelone/746/sentinelone-v3-3-0",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
@@ -3903,6 +3903,92 @@
       "output_schema": {
         "total": ""
       }
+    },
+    {
+      "operation": "create_blacklist_item",
+      "title": "Create Blacklist Item",
+      "description": "Creates a Blacklist item in SentinelOne based on the os type, hash value, and other input parameters you have specified.",
+      "category": "investigation",
+      "annotation": "create_blacklist_item",
+      "parameters": [
+        {
+          "title": "OS Type",
+          "description": "Select the OS type of the blacklist based on which you want to create item in SentinelOne. You can choose from the following options: Linux, MacOS, or Windows.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "name": "osType",
+          "options": [
+            "Linux",
+            "MacOS",
+            "Windows"
+          ]
+        },
+        {
+          "title": "Hash Value",
+          "description": "Specify the hash value to which you want to create blacklist item in SentinelOne.",
+          "type": "text",
+          "name": "hashValue",
+          "required": true,
+          "visible": true,
+          "editable": true
+        },
+        {
+          "title": "Description",
+          "description": "(Optional) Specify the description to which you want to create blacklist item in SentinelOne.",
+          "type": "text",
+          "name": "description",
+          "required": false,
+          "visible": true,
+          "editable": true
+        },
+        {
+          "title": "Tenant",
+          "description": "(Optional) Select this checkbox to indicate a tenant scope in the query. By default, this option is set as False.",
+          "type": "checkbox",
+          "name": "tenant",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": false,
+          "tooltip": "Select this checkbox to indicate a tenant scope in the query. By default, this option is set as False."
+        },
+        {
+          "title": "Account IDs",
+          "description": "(Optional) List of comma-separated agent's account whose \"blacklist item\" you want to create in SentinelOne.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "accountIds",
+          "tooltip": "List of comma-separated agent's account.",
+          "placeholder": "e.g 225494730938493804,225494730938493915"
+        }
+      ],
+      "enabled": true,
+      "output_schema": {}
+    },
+    {
+      "operation": "get_alerts",
+      "title": "Get Alerts",
+      "description": "Retrieves all alerts from SentinelOne based on the additional fields you have specified.",
+      "category": "investigation",
+      "annotation": "get_alerts",
+      "parameters": [
+        {
+          "title": "Additional Fields",
+          "name": "additional_fields",
+          "type": "json",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "tooltip": "Additional fields, in the JSON format, based on which you want to retrieve a alerts from SentinelOne.",
+          "description": "(Optional) Additional fields, in the JSON format, based on which you want to retrieve a alerts from SentinelOne."
+        }
+      ],
+      "enabled": true,
+      "output_schema": {}
     },
     {
       "operation": "custom_endpoint",
