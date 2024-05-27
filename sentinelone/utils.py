@@ -111,9 +111,12 @@ def _generate_headers(token=None):
 
 
 def _validate_credential(config):
-    url, verify_ssl = _build_url(config,
-                                 method_name='web/api/' + config.get('api_version') + '/users/login/by-api-token')
-
+    if config.get('user') == 'Console Users':
+        url, verify_ssl = _build_url(config,
+                                     method_name='web/api/' + config.get('api_version') + '/users/login/by-api-token')
+    else:
+        url, verify_ssl = _build_url(config,
+                                     method_name='web/api/' + config.get('api_version') + '/users/api-token-details')
     request_body = _create_login_request_body(config)
     headers = {'content-type': 'application/json'}
     try:
@@ -125,8 +128,15 @@ def _validate_credential(config):
 
 def _get_headers(config):
     validate_credential_response = _validate_credential(config)
-    token = validate_credential_response.json().get('data').get('token')
-    headers = _generate_headers(token)
+    if config.get('user') == 'Console Users':
+        token = validate_credential_response.json().get('data').get('token')
+        headers = _generate_headers(token)
+    else:
+        token = config.get('apiToken')
+        headers = {
+            'content-type': 'application/json',
+            'Authorization': 'apiToken ' + token
+        }
     return headers
 
 

@@ -3,7 +3,7 @@
   "label": "SentinelOne",
   "description": "SentinelOne that provides threat detection, hunting, and response features that enable organizations to discover vulnerabilities and protect IT operations. This connector facilitates automated operations related to events, threats, agents, query, and applications.",
   "publisher": "Fortinet",
-  "cs_approved": false,
+  "cs_approved": true,
   "cs_compatible": true,
   "version": "3.4.0",
   "category": "Analytics and SIEM",
@@ -24,6 +24,21 @@
         "visible": true,
         "type": "text",
         "name": "host_name"
+      },
+      {
+        "title": "Account User",
+        "description": "Select the account user to which you will connect and perform the automated operations.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "select",
+        "name": "user",
+        "options": [
+          "Console Users",
+          "Service Users"
+        ],
+        "value": "Console Users",
+        "tooltip": "Select the account user to which you will connect and perform the automated operations."
       },
       {
         "title": "API Token",

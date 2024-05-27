@@ -963,10 +963,12 @@ def get_alerts(config, params):
         params.pop('additional_fields')
         params.update(additional_fields)
     payload = {k: v for k, v in params.items() if v is not None and v != ''}
+    url, verify_ssl = _build_url(config, method_name=endpoint)
     response = _get(headers, url, params=payload, verify=verify_ssl)
     if response:
         return response
     error_handling("Failed to get alerts.", response.text)
+
 
 def custom_endpoint(config, params):
     headers = _get_headers(config)
