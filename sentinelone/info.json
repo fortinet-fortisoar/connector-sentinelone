@@ -3,7 +3,7 @@
   "label": "SentinelOne",
   "description": "SentinelOne that provides threat detection, hunting, and response features that enable organizations to discover vulnerabilities and protect IT operations. This connector facilitates automated operations related to events, threats, agents, query, and applications.",
   "publisher": "Fortinet",
-  "cs_approved": true,
+  "cs_approved": false,
   "cs_compatible": true,
   "version": "3.4.0",
   "category": "Analytics and SIEM",
@@ -13,7 +13,7 @@
   "ingestion_modes": [
     "scheduled"
   ],
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/3.4.0/sentinelone/887/sentinelone-v3-4-0",
   "configuration": {
     "fields": [
       {
@@ -3922,13 +3922,13 @@
     {
       "operation": "create_blacklist_item",
       "title": "Create Blacklist Item",
-      "description": "Creates a Blacklist item in SentinelOne based on the os type, hash value, and other input parameters you have specified.",
+      "description": "Creates a blacklist item in SentinelOne based on the OS type, hash value, and other input parameters that you have specified.",
       "category": "investigation",
       "annotation": "create_blacklist_item",
       "parameters": [
         {
           "title": "OS Type",
-          "description": "Select the OS type of the blacklist based on which you want to create item in SentinelOne. You can choose from the following options: Linux, MacOS, or Windows.",
+          "description": "Select the OS type of the blacklist item to create in SentinelOne. You can choose from the following options: Linux, MacOS, or Windows.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -3938,40 +3938,43 @@
             "Linux",
             "MacOS",
             "Windows"
-          ]
+          ],
+          "tooltip": "Select the OS type of the blacklist item to create in SentinelOne. You can choose from the following options: Linux, MacOS, or Windows."
         },
         {
           "title": "Hash Value",
-          "description": "Specify the hash value to which you want to create blacklist item in SentinelOne.",
+          "description": "Specify the hash value for which to create the blacklist item in SentinelOne.",
           "type": "text",
           "name": "hashValue",
           "required": true,
           "visible": true,
-          "editable": true
+          "editable": true,
+          "tooltip": "Specify the hash value for which to create the blacklist item in SentinelOne."
         },
         {
           "title": "Description",
-          "description": "(Optional) Specify the description to which you want to create blacklist item in SentinelOne.",
+          "description": "(Optional) Specify a description for the blacklist item being created in SentinelOne.",
           "type": "text",
           "name": "description",
           "required": false,
           "visible": true,
-          "editable": true
+          "editable": true,
+          "tooltip": "(Optional) Specify a description for the blacklist item being created in SentinelOne."
         },
         {
           "title": "Tenant",
-          "description": "(Optional) Select this checkbox to indicate a tenant scope in the query. By default, this option is set as False.",
+          "description": "(Optional) Select this checkbox to indicate a tenant scope in the query. By default, this option is not selected, i.e., set to false.",
           "type": "checkbox",
           "name": "tenant",
           "required": false,
           "visible": true,
           "editable": true,
           "value": false,
-          "tooltip": "Select this checkbox to indicate a tenant scope in the query. By default, this option is set as False."
+          "tooltip": "(Optional) Select this checkbox to indicate a tenant scope in the query. By default, this option is not selected, i.e., set to false."
         },
         {
           "title": "Account IDs",
-          "description": "(Optional) List of comma-separated agent's account whose \"blacklist item\" you want to create in SentinelOne.",
+          "description": "(Optional) Specify a list of comma-separated agent accounts to which the blacklist item hash is to be added in SentinelOne.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -3998,8 +4001,8 @@
           "required": false,
           "editable": true,
           "visible": true,
-          "tooltip": "Additional fields, in the JSON format, based on which you want to retrieve a alerts from SentinelOne.",
-          "description": "(Optional) Additional fields, in the JSON format, based on which you want to retrieve a alerts from SentinelOne."
+          "tooltip": "(Optional) Specify additional fields, in the JSON format, based on which to retrieve alerts from SentinelOne.",
+          "description": "(Optional) Specify additional fields, in the JSON format, based on which to retrieve alerts from SentinelOne."
         }
       ],
       "enabled": true,
