@@ -5,7 +5,7 @@
   "publisher": "Fortinet",
   "cs_approved": false,
   "cs_compatible": true,
-  "version": "3.4.0",
+  "version": "3.5.0",
   "category": "Analytics and SIEM",
   "icon_small_name": "small_icon.png",
   "icon_large_name": "large_icon.png",
@@ -13,7 +13,7 @@
   "ingestion_modes": [
     "scheduled"
   ],
-  "help_online": "https://docs.fortinet.com/document/fortisoar/3.4.0/sentinelone/887/sentinelone-v3-4-0",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
@@ -2615,6 +2615,198 @@
       }
     },
     {
+      "operation": "get_threat_notes",
+      "title": "Get Threat Notes",
+      "description": "Retrieve the notes for a specified threat from SentinelOne based on the threat ID and other input parameters you have specified.",
+      "category": "investigation",
+      "annotation": "get_threat_notes",
+      "parameters": [
+        {
+          "title": "Threat ID",
+          "description": "Specify the ID of the threat whose notes you want to retrieve from SentinelOne.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "id",
+          "tooltip": "Specify the ID of the threat whose notes you want to retrieve from SentinelOne"
+        },
+        {
+          "title": "Creator ID",
+          "description": "Specify the creator ID for the threat note whose notes you want to retrieve from SentinelOne.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "creatorId",
+          "tooltip": "Specify the creator ID for the threat note whose notes you want to retrieve from SentinelOne."
+        },
+        {
+          "title": "Creator Name",
+          "description": "Specify the creator name (partially or full) for the threat note whose notes you want to retrieve from SentinelOne.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "creator__like",
+          "tooltip": "Specify the creator name (partially or full) for the threat note whose notes you want to retrieve from SentinelOne."
+        },
+        {
+          "title": "Sort By",
+          "description": "(Optional) Specify the name of the field on which you want to sort the result (threat notes).",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "sortBy",
+          "tooltip": "Specify the name of the field on which you want to sort the result (threat notes). For e.g id",
+          "placeholder": "For e.g id"
+        },
+        {
+          "title": "Sort Order",
+          "description": "(Optional) Select the sorting order of the results. You can choose from following options: Ascending or Descending.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "name": "sortOrder",
+          "options": [
+            "Ascending",
+            "Descending"
+          ],
+          "tooltip": "Select the sorting order of the results. You can choose from following options: Ascending or Descending."
+        },
+        {
+          "title": "Offset",
+          "description": "(Optional) Specify the initial number of results to skip from total results. To iterate over more than 1000 items, use \"Cursor\" parameter.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "skip",
+          "value": 0,
+          "tooltip": "Skips the specified number of results (0-1000) from the total results. To iterate over more than 1000 items, use \"Cursor\" parameter."
+        },
+        {
+          "title": "Limit Records",
+          "description": "(Optional) Specify the maximum number of results, per page, that this operation should return.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "limit",
+          "tooltip": "Maximum number of results, per page, that this operation should return. Range should be between 1 to 1000."
+        },
+        {
+          "title": "Skip Count",
+          "description": "(Optional) Select this option to avoid calculating the total number of results, which results in speeding up the execution time.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "checkbox",
+          "name": "skipCount",
+          "value": false,
+          "tooltip": "Select this option to avoid calculating the total number of results."
+        },
+        {
+          "title": "Count Only",
+          "description": "(Optional) Select this option to only retrieve the total number of items, without any of the actual objects, from SentinelOne.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "checkbox",
+          "name": "countOnly",
+          "placeholder": "Enable to return the total number of items.",
+          "value": false
+        },
+        {
+          "title": "Cursor",
+          "description": "(Optional) This parameter is used only if a previous operation has returned a partial result. If a previous response contains a cursor element, then the value of the cursor element includes a cursor parameter that specifies a starting point to use for subsequent calls.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "cursor",
+          "tooltip": "This parameter is used only if a previous operation has returned a partial result. If a previous response contains a cursor element, then the value of the cursor element includes a cursor parameter that specifies a starting point to use for subsequent calls. For e.g YWdlbnRfaWQ6NTgwMjkzODE=",
+          "placeholder": "e.g YWdlbnRfaWQ6NTgwMjkzODE="
+        }
+      ],
+      "enabled": true,
+      "output_schema": {}
+    },
+    {
+      "operation": "update_threat_note",
+      "title": "Update Threat Note",
+      "description": "Update a note for a specified threat from SentinelOne based on the threat ID, note ID and text you have specified.",
+      "category": "investigation",
+      "annotation": "update_threat_note",
+      "parameters": [
+        {
+          "title": "Threat ID",
+          "description": "Specify the ID of the threat whose note you want to update in SentinelOne.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "id",
+          "tooltip": "Specify the ID of the threat whose note you want to update in SentinelOne."
+        },
+        {
+          "title": "Note ID",
+          "description": "Specify the ID of the note whose you want to update in SentinelOne.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "note_id",
+          "tooltip": "Specify the ID of the note whose you want to update in SentinelOne."
+        },
+        {
+          "title": "Text",
+          "description": "Specify the text for the threat note based on which you want to update note in SentinelOne.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "text",
+          "tooltip": "Specify the text for the threat note based on which you want to update note in SentinelOne."
+        }
+      ],
+      "enabled": true,
+      "output_schema": {}
+    },
+    {
+      "operation": "delete_threat_note",
+      "title": "Delete Threat Note",
+      "description": "Delete a note for a specified threat from SentinelOne based on the threat ID and note ID you have specified.",
+      "category": "investigation",
+      "annotation": "delete_threat_note",
+      "parameters": [
+        {
+          "title": "Threat ID",
+          "description": "Specify the ID of the threat whose note you want to delete from SentinelOne.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "id",
+          "tooltip": "Specify the ID of the threat whose note you want to delete from SentinelOne."
+        },
+        {
+          "title": "Note ID",
+          "description": "Specify the ID of the note whose you want to delete from SentinelOne.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "note_id",
+          "tooltip": "Specify the ID of the note whose you want to delete from SentinelOne."
+        }
+      ],
+      "enabled": true,
+      "output_schema": {}
+    },
+    {
       "operation": "change_incident_status",
       "title": "Change Incident Status",
       "description": "Changes Incident Status on SentinelOne based on the threat ID and incident status that you have specified.",
@@ -4010,15 +4202,32 @@
     },
     {
       "operation": "custom_endpoint",
-      "title": "Custom API Endpoint",
-      "description": "Allows querying a custom API endpoint in SentinelOne based on the endpoint and request you have specified.",
+      "title": "Execute an API Request",
+      "description": "Sends an API request to any SentinelOne API endpoint based on specified HTTP method, endpoint, and other input parameters that you have specified, enabling flexible API interactions tailored to user needs.",
       "category": "query",
       "annotation": "custom_endpoint",
       "output_schema": {},
       "enabled": true,
       "parameters": [
         {
-          "title": "API Endpoint",
+          "title": "HTTP Method",
+          "name": "method",
+          "description": "Select an HTTP action for the request. You can select from the following options:  \n\nDELETE \n\nGET \n\nPATCH \n\nPOST \n\nPUT",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "value": "GET",
+          "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE"
+          ],
+          "tooltip": "Select an HTTP action for the request. You can select from the following options:  \n\nDELETE \n\nGET \n\nPATCH \n\nPOST \n\nPUT "
+        },
+        {
+          "title": "Endpoint",
           "required": true,
           "editable": true,
           "visible": true,
@@ -4029,30 +4238,14 @@
           "tooltip": "Specify the API Endpoint using which you want to make the API call. NOTE: The API endpoint for SentinelOne must be specified in the following format: https://<server_url>/web/api/<api_version>/threats"
         },
         {
-          "title": "HTTP method",
-          "name": "method",
-          "description": "Select the HTTP method to be used for the API call. You can choose from following options: GET or POST.",
-          "type": "select",
-          "visible": true,
-          "editable": true,
-          "required": false,
-          "value": "GET",
-          "options": [
-            "GET",
-            "POST"
-          ],
-          "tooltip": "Select the HTTP method to be used for the API call. You can choose from following options: GET or POST."
-        },
-        {
           "title": "Request Parameters/Body",
-          "tooltip": "(Optional) Specify the Request Parameters or the Request Body that you want to send with the GET or POST API call, respectively.",
+          "tooltip": "(Optional) Specify the Request Parameters or the Request Body that you want to send with the GET, POST, PUT, PATCH or DELETE API call, respectively.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "json",
           "name": "body",
-          "placeholder": "{}",
-          "description": "(Optional) Specify the Request Parameters or the Request Body that you want to send with the GET or POST API call, respectively."
+          "description": "(Optional) Specify the Request Parameters or the Request Body that you want to send with the GET, POST, PUT, PATCH or DELETE API call, respectively."
         }
       ]
     },

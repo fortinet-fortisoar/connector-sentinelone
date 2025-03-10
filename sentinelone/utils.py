@@ -1,12 +1,12 @@
 """
 Copyright start
 MIT License
-Copyright (c) 2024 Fortinet Inc
+Copyright (c) 2025 Fortinet Inc
 Copyright end
 """
 
 import json
-from requests import get, post, exceptions
+from requests import get, post, put, delete, exceptions
 from sys import _getframe
 
 from connectors.core.connector import get_logger, ConnectorError
@@ -44,6 +44,60 @@ def _get(headers, url, params=None, verify=True, timeout=12):
 def _post(headers, url, body={}, verify=True, timeout=12):
     try:
         res = post(url, data=json.dumps(body), headers=headers, timeout=timeout, verify=verify)
+        if res.ok or res.status_code == 204:
+            if 'json' in str(res.headers):
+                return res.json()
+            else:
+                return res
+        elif res.status_code == 404:
+            return res.json()
+        else:
+            logger.error("{0}".format(res.text))
+            raise ConnectorError("{0}".format(res.text))
+    except Exception as err:
+        logger.exception("{0}".format(str(err)))
+        raise ConnectorError("{0}".format(str(err)))
+
+
+def _put(headers, url, body={}, verify=True, timeout=12):
+    try:
+        res = put(url, data=json.dumps(body), headers=headers, timeout=timeout, verify=verify)
+        if res.ok or res.status_code == 204:
+            if 'json' in str(res.headers):
+                return res.json()
+            else:
+                return res
+        elif res.status_code == 404:
+            return res.json()
+        else:
+            logger.error("{0}".format(res.text))
+            raise ConnectorError("{0}".format(res.text))
+    except Exception as err:
+        logger.exception("{0}".format(str(err)))
+        raise ConnectorError("{0}".format(str(err)))
+
+
+def _patch(headers, url, body={}, verify=True, timeout=12):
+    try:
+        res = _patch(url, data=json.dumps(body), headers=headers, timeout=timeout, verify=verify)
+        if res.ok or res.status_code == 204:
+            if 'json' in str(res.headers):
+                return res.json()
+            else:
+                return res
+        elif res.status_code == 404:
+            return res.json()
+        else:
+            logger.error("{0}".format(res.text))
+            raise ConnectorError("{0}".format(res.text))
+    except Exception as err:
+        logger.exception("{0}".format(str(err)))
+        raise ConnectorError("{0}".format(str(err)))
+
+
+def _delete(headers, url, body={}, verify=True, timeout=12):
+    try:
+        res = delete(url, data=json.dumps(body), headers=headers, timeout=timeout, verify=verify)
         if res.ok or res.status_code == 204:
             if 'json' in str(res.headers):
                 return res.json()
