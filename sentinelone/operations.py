@@ -1,14 +1,15 @@
 """
 Copyright start
 MIT License
-Copyright (c) 2024 Fortinet Inc
+Copyright (c) 2025 Fortinet Inc
 Copyright end
 """
 
 import json, os, requests
 from connectors.core.connector import get_logger, ConnectorError
 from .utils import (_build_url, _get,
-                    _post,
+                    _post, _patch,
+                    _put, _delete,
                     _get_headers, logout_user,
                     error_handling)
 from .constant import Threats_2_0, Threats_2_1, Threats_Details_2_0, Threats_Details_2_1, Agent_2_0, Agent_2_1, OS_Type, \
@@ -687,6 +688,45 @@ def get_threat_details(config, params):
     error_handling("Failed to get threat details. ", threat_detail.text)
 
 
+def get_threat_notes(config, params):
+    headers = _get_headers(config)
+    endpoint = 'web/api/{0}/threats/{1}/notes'.format(config.get('api_version'), params.pop('id'))
+    url, verify_ssl = _build_url(config, method_name=endpoint)
+    if params.get('sortOrder'):
+        params.update({'sortOrder': Sort_Type.get(params.get('sortOrder'))})
+    payload = get_payload(params)
+    threat_notes = _get(headers, url, params=payload, verify=verify_ssl)
+    logout_user(config, headers)
+    if threat_notes:
+        return threat_notes
+    error_handling("Failed to get threat notes. ", threat_notes.text)
+
+
+def update_threat_note(config, params):
+    headers = _get_headers(config)
+    endpoint = 'web/api/{0}/threats/{1}/notes/{2}'.format(config.get('api_version'), params.pop('id'),
+                                                          params.pop('note_id'))
+    url, verify_ssl = _build_url(config, method_name=endpoint)
+    payload = check_payload(params)
+    threat_notes = _put(headers, url, body=payload, verify=verify_ssl)
+    logout_user(config, headers)
+    if threat_notes:
+        return threat_notes
+    error_handling("Failed to update threat note. ", threat_notes.text)
+
+
+def delete_threat_note(config, params):
+    headers = _get_headers(config)
+    endpoint = 'web/api/{0}/threats/{1}/notes/{2}'.format(config.get('api_version'), params.get('id'),
+                                                          params.get('note_id'))
+    url, verify_ssl = _build_url(config, method_name=endpoint)
+    threat_notes = _delete(headers, url, verify=verify_ssl)
+    logout_user(config, headers)
+    if threat_notes:
+        return threat_notes
+    error_handling("Failed to delete threat note. ", threat_notes.text)
+
+
 def fetch_threat_file(config, params):
     headers = _get_headers(config)
     threat_ids = params.get('ids')
@@ -975,13 +1015,17 @@ def custom_endpoint(config, params):
     endpoint = params.get('endpoint')
     body = params.get('body')
     method = params.get('method')
+    payload = check_payload(body)
     if method == "GET":
-        payload = check_payload(body)
-        response = _get(headers, url=endpoint, params=payload, verify=config.get('verify_ssl'))
+        return _get(headers, url=endpoint, params=payload, verify=config.get('verify_ssl'))
+    if method == "POST":
+        return _post(headers, url=endpoint, body=payload, verify=config.get('verify_ssl'))
+    if method == "PUT":
+        return _put(headers, url=endpoint, body=payload, verify=config.get('verify_ssl'))
+    if method == "PATCH":
+        return _patch(headers, url=endpoint, body=payload, verify=config.get('verify_ssl'))
     else:
-        data = json.dumps(check_payload(body))
-        response = _post(headers, url=endpoint, body=data, verify=config.get('verify_ssl'))
-    return response.json()
+        return _delete(headers, url=endpoint, body=payload, verify=config.get('verify_ssl'))
 
 
 def get_output_schema_threats(config, params):
@@ -1016,6 +1060,9 @@ operations = {
     'abort_agent_scan': abort_agent_scan,
     'get_hash_details': get_hash_details,
     'get_threat_details': get_threat_details,
+    'get_threat_notes': get_threat_notes,
+    'update_threat_note': update_threat_note,
+    'delete_threat_note': delete_threat_note,
     'fetch_threat_file': fetch_threat_file,
     'get_threat_timeline': get_threat_timeline,
     'mitigate_threats': mitigate_threats,
