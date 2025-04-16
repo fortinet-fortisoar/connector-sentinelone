@@ -3,7 +3,7 @@
   "data": [
     {
       "@type": "WorkflowCollection",
-      "name": "Sample - SentinelOne - 3.5.0",
+      "name": "Sample - SentinelOne - 3.5.1",
       "description": "Sample playbooks for \"SentinelOne\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
       "visible": true,
       "image": null,
@@ -41,7 +41,7 @@
                 "name": "SentinelOne",
                 "config": "",
                 "params": [],
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "fetch_threats",
                 "operationTitle": "Fetch Threats",
@@ -149,7 +149,7 @@
                   "totalMemory__lte": 5,
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "fetch_agent_logs",
                 "operationTitle": "Fetch Agents Logs",
@@ -247,7 +247,7 @@
                 "params": {
                   "queryId": "q675541711278284c27a1a3469803b836"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_query_status",
                 "operationTitle": "Get Query Status",
@@ -347,7 +347,7 @@
                   "method": "GET",
                   "endpoint": "https://<server_url>/web/api/<api_version>/threats"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "custom_endpoint",
                 "operationTitle": "Custom API Endpoint",
@@ -667,7 +667,7 @@
                   "sortOrder": "",
                   "extra_parameters": ""
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_cve",
                 "operationTitle": "Get CVEs",
@@ -773,7 +773,7 @@
                   "skipCount": false,
                   "creator__like": ""
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_threat_notes",
                 "operationTitle": "Get Threat Notes",
@@ -882,7 +882,7 @@
                   "sortOrder": "",
                   "additional_fields": ""
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_threat_timeline",
                 "operationTitle": "Get Threat Timeline",
@@ -985,7 +985,7 @@
                   "subQuery": "",
                   "sortOrder": ""
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_events",
                 "operationTitle": "Get Events",
@@ -1094,7 +1094,7 @@
                   "agentMachineTypes": "",
                   "agentIsDecommissioned": ""
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_applications",
                 "operationTitle": "Get Applications",
@@ -1203,7 +1203,7 @@
                   "totalMemory__lte": 5,
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "abort_agent_scan",
                 "operationTitle": "Abort Agent Scan",
@@ -1301,7 +1301,7 @@
                 "params": {
                   "hash_id": "e104e267ad1f0e5024369032720ee028d84fda8c"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_hash_details",
                 "operationTitle": "Get Hash Details",
@@ -1399,7 +1399,7 @@
                 "params": {
                   "agent_application_id": "774341800335007828"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_application_cve",
                 "operationTitle": "Get Application CVEs",
@@ -1498,7 +1498,7 @@
                   "threat_id": "737238640203555438",
                   "export_format": "RAW"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "export_forensics_threat",
                 "operationTitle": "Export Threat",
@@ -1600,7 +1600,7 @@
                   "isUninstalled": "",
                   "isDecommissioned": ""
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "agent_action",
                 "operationTitle": "Agent Action",
@@ -1726,7 +1726,7 @@
                 "params": {
                   "threat_id": "737238636328018529"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "threat_forensic_details",
                 "operationTitle": "Threat Forensic Details",
@@ -1796,7 +1796,7 @@
                 "params": {
                   "additional_fields": "{\n  \n}"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_alerts",
                 "operationTitle": "Get Alerts",
@@ -1901,7 +1901,7 @@
                   "note": "Sample Note",
                   "threatID": "1426608918205417500"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "add_note_to_a_threat",
                 "operationTitle": "Add Note to a Threat",
@@ -2001,7 +2001,7 @@
                   "threat_id": "737238636328018529",
                   "accountIds": "571644020260225832"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "threat_forensics",
                 "operationTitle": "Get Threat Forensics",
@@ -2136,7 +2136,7 @@
                   "text": "Update Threat Note",
                   "note_id": "1"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "update_threat_note",
                 "operationTitle": "Update Threat Note",
@@ -2203,7 +2203,7 @@
                 "name": "SentinelOne",
                 "config": "",
                 "params": [],
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "free_text_filters",
                 "operationTitle": "Free Text Filters",
@@ -2313,7 +2313,7 @@
                   "totalMemory__lte": 5,
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_agents",
                 "operationTitle": "Get Agents",
@@ -2415,7 +2415,7 @@
                   "accountIds": "",
                   "description": ""
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "create_blacklist_item",
                 "operationTitle": "Create Blacklist Item",
@@ -2531,7 +2531,7 @@
                   "totalMemory__lte": "5",
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "broadcast_message_to_agent",
                 "operationTitle": "Broadcast Message To Agent",
@@ -2640,7 +2640,7 @@
                   "totalMemory__lte": 5,
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "initiate_agent_scan",
                 "operationTitle": "Initiate Agent Scan",
@@ -2738,7 +2738,7 @@
                 "params": {
                   "ids": "733643234093413940"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_agent_passphrase",
                 "operationTitle": "Get Agent Passphrase",
@@ -2847,7 +2847,7 @@
                   "totalMemory__lte": 5,
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "reconnect_agent",
                 "operationTitle": "Reconnect Agent",
@@ -2955,7 +2955,7 @@
                   "agentMachineTypes": "Laptop",
                   "agentIsDecommissioned": ""
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "export_applications_risk",
                 "operationTitle": "Export Applications Risk",
@@ -3058,7 +3058,7 @@
                   "displayName": "word_sample_20191011065710.doc",
                   "targetScope": "group"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "mark_threat_as_benign",
                 "operationTitle": "Mark Threat As Benign",
@@ -3162,7 +3162,7 @@
                   "createdAt__gt": "",
                   "createdAt__lte": ""
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "list_all_threats",
                 "operationTitle": "List All Threat",
@@ -3275,7 +3275,7 @@
                   "createdAt__gt": "{{vars.last_pull_time}}",
                   "updatedAt__gt": "{{vars.last_pull_time}}"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "fetch_threats",
                 "operationTitle": "Fetch Threats",
@@ -3461,7 +3461,7 @@
                   "threatID": "1426608918205417370",
                   "incidentStatus": "In Progress"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "change_incident_status",
                 "operationTitle": "Change Incident Status",
@@ -3563,7 +3563,7 @@
                   "contentHash": "ad56917d0bbece0ab09d76d7e3d7cc8b6afb09a2",
                   "displayName": "word_sample_20191011065710.doc"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "mitigate_threats",
                 "operationTitle": "Mitigate Threat",
@@ -3668,7 +3668,7 @@
                   "eventSubTypes": "",
                   "additional_fields": ""
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_threat_events",
                 "operationTitle": "Get Threat Events List",
@@ -3772,7 +3772,7 @@
                   "queryType": "events",
                   "accountIds": "571644020260225832"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "create_query",
                 "operationTitle": "Create Query And Get Query ID",
@@ -3873,7 +3873,7 @@
                   "threat_id": "737238636328018529",
                   "accountIds": "571644020260225832"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "threat_seen_on_network",
                 "operationTitle": "Get Threat Seen on Network",
@@ -3981,7 +3981,7 @@
                   "agentMachineTypes": "",
                   "agentIsDecommissioned": ""
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_application_count",
                 "operationTitle": "Get Application Count",
@@ -4079,7 +4079,7 @@
                 "params": {
                   "ids": "733643234093413940"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_agent_application",
                 "operationTitle": "Get Agent Application",
@@ -4178,7 +4178,7 @@
                   "id": "1",
                   "note_id": "1"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "delete_threat_note",
                 "operationTitle": "Delete Threat Note",
@@ -4293,7 +4293,7 @@
                     "incidentStatuses": ""
                   }
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "fetch_threat_file",
                 "operationTitle": "Fetch Threat File",
@@ -4397,7 +4397,7 @@
                   "sortOrder": "",
                   "event_type": "Events"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_events_by_type",
                 "operationTitle": "Get Events By Type",
@@ -4506,7 +4506,7 @@
                   "totalMemory__lte": 5,
                   "computerName__like": "DESKTOP-KVVF3BB"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_agent_count",
                 "operationTitle": "Get Agent Count",
@@ -4604,7 +4604,7 @@
                 "params": {
                   "queryId": "q675541711278284c27a1a3469803b836"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "cancel_running_query",
                 "operationTitle": "Cancel Running Query",
@@ -4702,7 +4702,7 @@
                 "params": {
                   "ids": "737238636328018529"
                 },
-                "version": "3.5.0",
+                "version": "3.5.1",
                 "connector": "sentinelone",
                 "operation": "get_threat_details",
                 "operationTitle": "Get Threat Details",
