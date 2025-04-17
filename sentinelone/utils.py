@@ -113,13 +113,6 @@ def _delete(headers, url, body={}, verify=True, timeout=12):
         raise ConnectorError("{0}".format(str(err)))
 
 
-def logout_user(config, headers):
-    url, verify_ssl = _build_url(config, method_name='web/api/' + config.get('api_version') + '/users/logout')
-    logger.info(url)
-    logout = _post(headers, url, body={})
-    return logout
-
-
 def _check_and_convert_params(params):
     convert_params = dict()
     if params:

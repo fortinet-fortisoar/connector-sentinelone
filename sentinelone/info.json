@@ -5,7 +5,7 @@
   "publisher": "Fortinet",
   "cs_approved": false,
   "cs_compatible": true,
-  "version": "3.5.0",
+  "version": "3.5.1",
   "category": "Analytics and SIEM",
   "icon_small_name": "small_icon.png",
   "icon_large_name": "large_icon.png",
@@ -13,7 +13,7 @@
   "ingestion_modes": [
     "scheduled"
   ],
-  "help_online": "https://docs.fortinet.com/document/fortisoar/3.5.0/sentinelone/1043/sentinelone-v3-5-0",
+  "help_online": "",
   "configuration": {
     "fields": [
       {

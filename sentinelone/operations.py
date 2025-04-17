@@ -10,7 +10,7 @@ from connectors.core.connector import get_logger, ConnectorError
 from .utils import (_build_url, _get,
                     _post, _patch,
                     _put, _delete,
-                    _get_headers, logout_user,
+                    _get_headers,
                     error_handling)
 from .constant import Threats_2_0, Threats_2_1, Threats_Details_2_0, Threats_Details_2_1, Agent_2_0, Agent_2_1, OS_Type, \
     APP_Type_List, Sort_Type, Incident_State_List
@@ -123,7 +123,6 @@ def isolate_agent_network(config, params):
     payload = create_payload(params)
     url, verify_ssl = _build_url(config, method_name=endpoint)
     agent_networks = _post(headers, url, body=payload, verify=verify_ssl)
-    logout_user(config, headers)
     if agent_networks.get('data'):
         return agent_networks.get('data')
     elif agent_networks:
@@ -148,7 +147,6 @@ def reconnect_agent(config, params):
     payload = create_payload(params)
     url, verify_ssl = _build_url(config, method_name=endpoint)
     agent_networks = _post(headers, url, body=payload, verify=verify_ssl)
-    logout_user(config, headers)
     if agent_networks.get('data'):
         return agent_networks.get('data')
     elif agent_networks:
@@ -166,7 +164,6 @@ def decommission_agent(config, params):
     payload = create_payload(params)
     url, verify_ssl = _build_url(config, method_name=endpoint)
     decommission_agent_status = _post(headers, url, body=payload, verify=verify_ssl)
-    logout_user(config, headers)
     if decommission_agent_status.get('data'):
         return decommission_agent_status.get('data')
     elif decommission_agent_status:
@@ -184,7 +181,6 @@ def uninstall_agent(config, params):
     payload = create_payload(params)
     url, verify_ssl = _build_url(config, method_name=endpoint)
     agent_uninstall = _post(headers, url, body=payload, verify=verify_ssl)
-    logout_user(config, headers)
     if agent_uninstall.get('data'):
         return agent_uninstall.get('data')
     elif agent_uninstall:
@@ -202,7 +198,6 @@ def shutdown_agent(config, params):
     payload = create_payload(params)
     url, verify_ssl = _build_url(config, method_name=endpoint)
     agent_shutdown = _post(headers, url, body=payload, verify=verify_ssl)
-    logout_user(config, headers)
     if agent_shutdown.get('data'):
         return agent_shutdown.get('data')
     elif agent_shutdown:
@@ -248,7 +243,6 @@ def initiate_agent_scan(config, params):
     payload = create_payload(params)
     url, verify_ssl = _build_url(config, method_name=endpoint)
     initiate_scan = _post(headers, url, body=payload, verify=verify_ssl)
-    logout_user(config, headers)
     if initiate_scan.get('data'):
         return initiate_scan.get('data')
     elif initiate_scan:
@@ -277,7 +271,6 @@ def abort_agent_scan(config, params):
     payload = create_payload(params)
     url, verify_ssl = _build_url(config, method_name=endpoint)
     abort_scan = _post(headers, url, body=payload, verify=verify_ssl)
-    logout_user(config, headers)
     if abort_scan.get('data'):
         return abort_scan.get('data')
     elif abort_scan:
@@ -680,7 +673,6 @@ def get_threat_details(config, params):
     endpoint = 'web/api/{0}/threats?ids={1}'.format(config.get('api_version'), params.get('ids'))
     url, verify_ssl = _build_url(config, method_name=endpoint)
     threat_detail = _get(headers, url, verify=verify_ssl)
-    logout_user(config, headers)
     if threat_detail.get('data'):
         return threat_detail.get('data')
     elif threat_detail:
@@ -696,7 +688,6 @@ def get_threat_notes(config, params):
         params.update({'sortOrder': Sort_Type.get(params.get('sortOrder'))})
     payload = get_payload(params)
     threat_notes = _get(headers, url, params=payload, verify=verify_ssl)
-    logout_user(config, headers)
     if threat_notes:
         return threat_notes
     error_handling("Failed to get threat notes. ", threat_notes.text)
@@ -709,7 +700,6 @@ def update_threat_note(config, params):
     url, verify_ssl = _build_url(config, method_name=endpoint)
     payload = check_payload(params)
     threat_notes = _put(headers, url, body=payload, verify=verify_ssl)
-    logout_user(config, headers)
     if threat_notes:
         return threat_notes
     error_handling("Failed to update threat note. ", threat_notes.text)
@@ -721,7 +711,6 @@ def delete_threat_note(config, params):
                                                           params.get('note_id'))
     url, verify_ssl = _build_url(config, method_name=endpoint)
     threat_notes = _delete(headers, url, verify=verify_ssl)
-    logout_user(config, headers)
     if threat_notes:
         return threat_notes
     error_handling("Failed to delete threat note. ", threat_notes.text)
@@ -829,7 +818,7 @@ def fetch_threats(config, params):
                 payload.update({'cursor': next_cursor})
             else:
                 return {'data': result, 'pagination': {'nextCursor': None, 'totalItems': 0}}
-    error_handling("Failed to get threats. ", threats.text)
+        error_handling("Failed to get threats. ", threats.text)
 
 
 def get_agent_count(config, params):
@@ -848,7 +837,6 @@ def get_agent_count(config, params):
     url, verify_ssl = _build_url(config, method_name='web/api/' + config.get('api_version') + '/agents/count')
     payload = {k: v for k, v in params.items() if v is not None and v != ''}
     agent_count = _get(headers, url, verify=verify_ssl, params=payload)
-    logout_user(config, headers)
     if agent_count.get('data'):
         return agent_count.get('data')
     elif agent_count:
