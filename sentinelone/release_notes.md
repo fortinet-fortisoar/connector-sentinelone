@@ -1,3 +1,3 @@
 #### Following enhancements have been made to the SentinelOne Connector in version 3.5.1:
 
-- Removed the logout user API from the source code, which is causing some actions to fail for the service user account.
+- Some connector actions were failing as SentinelOne does not support logout API for service users. The connector has been updated to accommodate this change.
