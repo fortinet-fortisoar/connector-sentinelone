@@ -970,7 +970,12 @@ def create_blacklist_item(config, params):
             "type": restriction_type,
             "description": description
         }
-        payload["filter"] = {"accountIds": accountIds, "tenant": tenant, "groupIds": groupIds, "siteIds": siteIds}
+        filter_payload = {"accountIds": accountIds, "tenant": tenant}
+        if groupIds:
+            filter_payload["groupIds"] = groupIds
+        if siteIds:
+            filter_payload["siteIds"] = siteIds
+        payload["filter"] = filter_payload
         response = requests.post(url, data=json.dumps(payload), headers=headers)
         if response.status_code == 200:
             return {
