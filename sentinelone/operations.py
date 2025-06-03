@@ -319,11 +319,11 @@ def create_query(config, params):
     if type:
         type = list(type.split(","))
     if account_ids:
-        account_ids = str(account_ids.split(","))
+        account_ids = str(account_ids).split(",")
     if site_ids:
-        site_ids = str(site_ids.split(","))
+        site_ids = str(site_ids).split(",")
     if group_ids:
-        group_ids = str(group_ids.split(","))
+        group_ids = str(group_ids).split(",")
     payload = {
         "fromDate": params.get('fromDate'),
         "groupIds": group_ids,
