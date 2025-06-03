@@ -5,7 +5,7 @@
   "publisher": "Fortinet",
   "cs_approved": false,
   "cs_compatible": true,
-  "version": "3.5.1",
+  "version": "3.5.2",
   "category": "Analytics and SIEM",
   "icon_small_name": "small_icon.png",
   "icon_large_name": "large_icon.png",
@@ -13,7 +13,7 @@
   "ingestion_modes": [
     "scheduled"
   ],
-  "help_online": "https://docs.fortinet.com/document/fortisoar/3.5.1/sentinelone/1058/sentinelone-v3-5-1",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
@@ -4113,8 +4113,8 @@
     },
     {
       "operation": "create_blacklist_item",
-      "title": "Create Blacklist Item",
-      "description": "Creates a blacklist item in SentinelOne based on the OS type, hash value, and other input parameters that you have specified.",
+      "title": "Create Blocklist Item",
+      "description": "Creates a blocklist item in SentinelOne based on the OS type, hash value, and other input parameters that you have specified.",
       "category": "investigation",
       "annotation": "create_blacklist_item",
       "parameters": [
@@ -4134,14 +4134,24 @@
           "tooltip": "Select the OS type of the blacklist item to create in SentinelOne. You can choose from the following options: Linux, MacOS, or Windows."
         },
         {
-          "title": "Hash Value",
-          "description": "Specify the hash value for which to create the blacklist item in SentinelOne.",
+          "title": "SHA-1 Hash Value",
+          "description": "Specify the SHA-1 hash value for which to create the blacklist item in SentinelOne. Note: You must specify either the SHA-1 or SHA-256 or the both.",
           "type": "text",
           "name": "hashValue",
-          "required": true,
+          "required": false,
           "visible": true,
           "editable": true,
-          "tooltip": "Specify the hash value for which to create the blacklist item in SentinelOne."
+          "tooltip": "Specify the SHA-1 hash value for which to create the blacklist item in SentinelOne. Note: You must specify either the SHA-1 or SHA-256 or the both."
+        },
+        {
+          "title": "SHA-256 Hash Value",
+          "description": "Specify the SHA-256 hash value for which to create the blacklist item in SentinelOne. Note: You must specify either the SHA-1 or SHA-256 or the both.",
+          "type": "text",
+          "name": "sha256Value",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the SHA-256 hash value for which to create the blacklist item in SentinelOne. Note: You must specify either the SHA-1 or SHA-256 or the both."
         },
         {
           "title": "Description",
@@ -4173,6 +4183,28 @@
           "type": "text",
           "name": "accountIds",
           "tooltip": "List of comma-separated agent's account.",
+          "placeholder": "e.g 225494730938493804,225494730938493915"
+        },
+        {
+          "title": "Group IDs",
+          "description": "(Optional) List of comma-separated agent's group IDs on which you want to blacklist item hash is to be added in SentinelOne.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "groupIds",
+          "tooltip": "List of comma-separated agent's group.",
+          "placeholder": "e.g 225494730938493804,225494730938493915"
+        },
+        {
+          "title": "Site IDs",
+          "description": "(Optional) List of comma-separated agent's site IDs on which you want to which the blacklist item hash is to be added in SentinelOne.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "siteIds",
+          "tooltip": "List of comma-separated agent's site.",
           "placeholder": "e.g 225494730938493804,225494730938493915"
         }
       ],

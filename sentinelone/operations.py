@@ -319,11 +319,11 @@ def create_query(config, params):
     if type:
         type = list(type.split(","))
     if account_ids:
-        account_ids = str(account_ids.split(","))
+        account_ids = str(account_ids).split(",")
     if site_ids:
-        site_ids = str(site_ids.split(","))
+        site_ids = str(site_ids).split(",")
     if group_ids:
-        group_ids = str(group_ids.split(","))
+        group_ids = str(group_ids).split(",")
     payload = {
         "fromDate": params.get('fromDate'),
         "groupIds": group_ids,
@@ -944,6 +944,7 @@ def create_blacklist_item(config, params):
         url, verify_ssl = _build_url(config, method_name=endpoint)
         restriction_type = "black_hash"
         hashValue = params.pop("hashValue", "")
+        sha256Value = params.pop("sha256Value", "")
         osType = params.pop("osType", "").lower()
         description = params.pop("description", "")
         tenant = params.pop("tenant", "")
@@ -955,20 +956,32 @@ def create_blacklist_item(config, params):
                 "statusCode": "400",
                 "statusMessage": "Account id cannot be empty"
             }
+        groupIds = params.pop("groupIds")
+        if groupIds:
+            groupIds = str(groupIds).split(",")
+        siteIds = params.pop("siteIds")
+        if siteIds:
+            siteIds = str(siteIds).split("siteIds")
         payload = create_payload(params)
         payload["data"] = {
             "osType": osType,
             "value": hashValue,
+            "sha256Value": sha256Value,
             "type": restriction_type,
             "description": description
         }
-        payload["filter"] = {"accountIds": accountIds, "tenant": tenant}
+        filter_payload = {"accountIds": accountIds, "tenant": tenant}
+        if groupIds:
+            filter_payload["groupIds"] = groupIds
+        if siteIds:
+            filter_payload["siteIds"] = siteIds
+        payload["filter"] = filter_payload
         response = requests.post(url, data=json.dumps(payload), headers=headers)
         if response.status_code == 200:
             return {
                 "statusCode": response.status_code,
                 "statusMessage": "Hash Value(s) Created Successfully",
-                "details": response.json(),
+                "details": response.json()
             }
         elif (response.status_code == 400 and response.json()["errors"][0]["title"] == "Already Exists Error"):
             return {
