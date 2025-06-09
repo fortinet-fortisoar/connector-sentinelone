@@ -13,7 +13,7 @@
   "ingestion_modes": [
     "scheduled"
   ],
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/3.5.2/sentinelone/1090/sentinelone-v3-5-2",
   "configuration": {
     "fields": [
       {
@@ -4120,7 +4120,7 @@
       "parameters": [
         {
           "title": "OS Type",
-          "description": "Select the OS type of the blacklist item to create in SentinelOne. You can choose from the following options: Linux, MacOS, or Windows.",
+          "description": "Select the OS type of the blocklist item to create in SentinelOne. You can choose from the following options: Linux, MacOS, or Windows.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -4131,37 +4131,37 @@
             "MacOS",
             "Windows"
           ],
-          "tooltip": "Select the OS type of the blacklist item to create in SentinelOne. You can choose from the following options: Linux, MacOS, or Windows."
+          "tooltip": "Select the OS type of the blocklist item to create in SentinelOne. You can choose from the following options: Linux, MacOS, or Windows."
         },
         {
           "title": "SHA-1 Hash Value",
-          "description": "Specify the SHA-1 hash value for which to create the blacklist item in SentinelOne. Note: You must specify either the SHA-1 or SHA-256 or the both.",
+          "description": "(Optional) Specify the SHA-1 hash value for which to create the blocklist item in SentinelOne. Note: You must specify either the SHA-1 or the SHA-256 value, or both values.",
           "type": "text",
           "name": "hashValue",
           "required": false,
           "visible": true,
           "editable": true,
-          "tooltip": "Specify the SHA-1 hash value for which to create the blacklist item in SentinelOne. Note: You must specify either the SHA-1 or SHA-256 or the both."
+          "tooltip": "(Optional) Specify the SHA-1 hash value for which to create the blocklist item in SentinelOne. Note: You must specify either the SHA-1 or the SHA-256 value, or both values."
         },
         {
           "title": "SHA-256 Hash Value",
-          "description": "Specify the SHA-256 hash value for which to create the blacklist item in SentinelOne. Note: You must specify either the SHA-1 or SHA-256 or the both.",
+          "description": "(Optional) Specify the SHA-256 hash value for which to create the blocklist item in SentinelOne. Note: You must specify either the SHA-1 or the SHA-256 value, or both values.",
           "type": "text",
           "name": "sha256Value",
           "required": false,
           "visible": true,
           "editable": true,
-          "tooltip": "Specify the SHA-256 hash value for which to create the blacklist item in SentinelOne. Note: You must specify either the SHA-1 or SHA-256 or the both."
+          "tooltip": "(Optional) Specify the SHA-256 hash value for which to create the blocklist item in SentinelOne. Note: You must specify either the SHA-1 or the SHA-256 value, or both values."
         },
         {
           "title": "Description",
-          "description": "(Optional) Specify a description for the blacklist item being created in SentinelOne.",
+          "description": "(Optional) Specify a description for the blocklist item being created in SentinelOne.",
           "type": "text",
           "name": "description",
           "required": false,
           "visible": true,
           "editable": true,
-          "tooltip": "(Optional) Specify a description for the blacklist item being created in SentinelOne."
+          "tooltip": "(Optional) Specify a description for the blocklist item being created in SentinelOne."
         },
         {
           "title": "Tenant",
@@ -4176,7 +4176,7 @@
         },
         {
           "title": "Account IDs",
-          "description": "(Optional) Specify a list of comma-separated agent accounts to which the blacklist item hash is to be added in SentinelOne.",
+          "description": "(Optional) Specify a list of comma-separated agent accounts to which the blocklist item hash is to be added in SentinelOne",
           "required": false,
           "editable": true,
           "visible": true,
@@ -4187,7 +4187,7 @@
         },
         {
           "title": "Group IDs",
-          "description": "(Optional) List of comma-separated agent's group IDs on which you want to blacklist item hash is to be added in SentinelOne.",
+          "description": "(Optional) Specify a list of comma-separated agents' group IDs to which the blocklist item hash is to be added in SentinelOne.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -4198,7 +4198,7 @@
         },
         {
           "title": "Site IDs",
-          "description": "(Optional) List of comma-separated agent's site IDs on which you want to which the blacklist item hash is to be added in SentinelOne.",
+          "description": "(Optional) Specify a list of comma-separated agents' site IDs to which the blocklist item hash is to be added in SentinelOne.",
           "required": false,
           "editable": true,
           "visible": true,
