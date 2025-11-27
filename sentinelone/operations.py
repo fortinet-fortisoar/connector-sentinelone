@@ -976,7 +976,7 @@ def create_blacklist_item(config, params):
         if siteIds:
             filter_payload["siteIds"] = siteIds
         payload["filter"] = filter_payload
-        response = requests.post(url, data=json.dumps(payload), headers=headers)
+        response = requests.post(url, data=json.dumps(payload), headers=headers, verify=verify_ssl)
         if response.status_code == 200:
             return {
                 "statusCode": response.status_code,
